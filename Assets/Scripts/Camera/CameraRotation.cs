@@ -36,12 +36,13 @@ public class CameraRotation : MonoBehaviour
             if ((mousePosition.y < 0.0f && self.position.y >= upRotationClamp) || 
                 (mousePosition.y > 0.0f && self.position.y <= downRotationClamp)) return;
 
-            mousePosition /= 100;
-            mousePosition.y = -mousePosition.y;
+            mousePosition.x /= 100;
+            mousePosition.y /= -75;
             if (mousePosition.x < deadZone.x && mousePosition.x > -deadZone.x)
                 mousePosition.x = 0.0f;
             if (mousePosition.y < deadZone.y && mousePosition.y > -deadZone.y)
                 mousePosition.y = 0.0f;
+
             self.LookAt(target);
             self.Translate(mousePosition * Time.deltaTime);
         }
