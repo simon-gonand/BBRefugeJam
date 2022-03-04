@@ -9,10 +9,11 @@ public class CameraRotation : MonoBehaviour
     private Transform self;
     [SerializeField]
     private Transform target;
+    [SerializeField]
+    private CameraPanning panning;
 
     [Header("Stats")]
-    [SerializeField]
-    private Vector2 deadZone;
+    public Vector2 deadZone;
     [SerializeField]
     private float upRotationClamp;
     [SerializeField]
@@ -47,6 +48,7 @@ public class CameraRotation : MonoBehaviour
 
             self.LookAt(target);
             self.Translate(mousePosition * speed * Time.deltaTime);
+            panning.posBeforePan = self.position;
         }
     }
 }
