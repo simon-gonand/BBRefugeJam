@@ -10,13 +10,15 @@ public class CameraRotation : MonoBehaviour
     [SerializeField]
     private Transform target;
 
-    [Header("Rotation Clamp")]
+    [Header("Stats")]
     [SerializeField]
     private Vector2 deadZone;
     [SerializeField]
     private float upRotationClamp;
     [SerializeField]
     private float downRotationClamp;
+    [SerializeField]
+    private float speed;
 
     // Start is called before the first frame update
     void Start()
@@ -44,7 +46,7 @@ public class CameraRotation : MonoBehaviour
                 mousePosition.y = 0.0f;
 
             self.LookAt(target);
-            self.Translate(mousePosition * Time.deltaTime);
+            self.Translate(mousePosition * speed * Time.deltaTime);
         }
     }
 }

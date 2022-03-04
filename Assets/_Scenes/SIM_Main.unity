@@ -224,6 +224,7 @@ MonoBehaviour:
   deadZone: {x: 2, y: 2}
   upRotationClamp: 12.5
   downRotationClamp: 1
+  speed: 1
 --- !u!1 &1334085051
 GameObject:
   m_ObjectHideFlags: 0
