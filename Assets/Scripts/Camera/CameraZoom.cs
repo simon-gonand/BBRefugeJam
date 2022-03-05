@@ -10,6 +10,8 @@ public class CameraZoom : MonoBehaviour
     private CameraPanning cameraPanning;
     [SerializeField]
     private float speed;
+    [SerializeField]
+    private float zoomMax;
 
     private Vector3 _startPos;
     public Vector3 startPos { set { _startPos = value; } }
@@ -27,6 +29,7 @@ public class CameraZoom : MonoBehaviour
     {
         if (Input.mouseScrollDelta.y > 0.0f)
         {
+            if (self.position.z >= zoomMax) return;
             Vector3 mousePos = Input.mousePosition;
             mousePos.z = speed;
             self.position = Camera.main.ScreenToWorldPoint(mousePos);

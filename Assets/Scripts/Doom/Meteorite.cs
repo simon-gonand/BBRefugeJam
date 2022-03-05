@@ -1,16 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Meteorite : MonoBehaviour
 {
     [SerializeField]
     private Transform self;
+    [SerializeField]
+    private UnityEvent feedback;
 
     private bool isLaunched = false;
     private Vector3 start;
     private Vector3 destination;
     private float t = 0.0f;
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        feedback.Invoke();
+    }
 
     private void Start()
     {
@@ -23,7 +31,6 @@ public class Meteorite : MonoBehaviour
 
         int x = Random.Range(0, (int)Grid.Instance.lenght - 1);
         int y = Random.Range(0, (int)Grid.Instance.width - 1);
-        //int z = Random.Range(0, (int)Grid.Instance.heightMax - 1);
 
         destination = Grid.Instance.GetCell((uint)x, (uint)y).transform.localPosition;
         destination -= poolLocalPos;

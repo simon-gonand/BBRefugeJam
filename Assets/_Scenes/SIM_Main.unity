@@ -223,6 +223,7 @@ MonoBehaviour:
   self: {fileID: 19823401}
   cameraPanning: {fileID: 19823403}
   speed: 5
+  zoomMax: 0
 --- !u!114 &19823403
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1165,6 +1166,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 59503b56c720e8546afc3485ad4a6491, type: 3}
+--- !u!1 &1503128414 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8705360595358655249, guid: 59503b56c720e8546afc3485ad4a6491, type: 3}
+  m_PrefabInstance: {fileID: 1503128413}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1503128415
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1503128414}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &1503128416 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4010075312264758243, guid: 59503b56c720e8546afc3485ad4a6491, type: 3}
