@@ -35,7 +35,7 @@ public class MeteoritesPool : MonoBehaviour
     {
         for (int i = 0; i < meteorites.Count; ++i)
         {
-            meteorites[i].Launch();
+            meteorites[i].Launch(self.localPosition);
             yield return new WaitForSeconds(Random.Range(0.0f, 0.3f));
         }
     }

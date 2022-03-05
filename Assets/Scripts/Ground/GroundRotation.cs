@@ -12,12 +12,10 @@ public class GroundRotation : MonoBehaviour
 
     [Header("Stats")]
     public Vector2 deadZone;
-    [SerializeField]
-    private float upRotationClamp;
-    [SerializeField]
-    private float downRotationClamp;
-    [SerializeField]
-    private float mouseSpeed;
+    public float upRotationClamp;
+    public float downRotationClamp;
+    public float mouseSpeed;
+
     [SerializeField]
     private float clickRotationSpeed;
 
@@ -56,12 +54,13 @@ public class GroundRotation : MonoBehaviour
     {
         canRotate = false;
         float t = 0.0f;
-        Quaternion startRotation = self.rotation;
-        Quaternion endRotation = Quaternion.Euler(self.eulerAngles.x, self.eulerAngles.y + angle, self.eulerAngles.z);
-        while (t < 1.0f)
+        while (t < (angle > 0.0f ? angle : -angle))
         {
             t += Time.deltaTime * clickRotationSpeed;
-            self.rotation = Quaternion.Slerp(startRotation, endRotation, t);
+            if (angle > 0.0f)
+                self.Rotate(Vector3.up, clickRotationSpeed * Time.deltaTime);
+            else
+                self.Rotate(Vector3.up, -clickRotationSpeed * Time.deltaTime);
             yield return null;
         }
 
@@ -88,7 +87,7 @@ public class GroundRotation : MonoBehaviour
                 !(mousePosition.y > 0.0f && self.eulerAngles.z >= downRotationClamp))            
                 self.RotateAround(self.position, zRotateAround.forward, mousePosition.y * mouseSpeed * Time.deltaTime);
 
-            mousePosition.y = mousePosition.x;
+            mousePosition.y = -mousePosition.x;
             mousePosition.x = 0.0f;
             self.Rotate(mousePosition * mouseSpeed * Time.deltaTime);
         }

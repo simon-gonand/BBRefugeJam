@@ -1,31 +1,39 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Meteorite : MonoBehaviour
 {
     [SerializeField]
     private Transform self;
+    [SerializeField]
+    private UnityEvent feedback;
 
     private bool isLaunched = false;
     private Vector3 start;
     private Vector3 destination;
     private float t = 0.0f;
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        feedback.Invoke();
+    }
+
     private void Start()
     {
         start = self.position;
     }
 
-    public void Launch()
+    public void Launch(Vector3 poolLocalPos)
     {
         isLaunched = true;
 
         int x = Random.Range(0, (int)Grid.Instance.lenght - 1);
         int y = Random.Range(0, (int)Grid.Instance.width - 1);
-        int z = Random.Range(0, (int)Grid.Instance.heightMax - 1);
 
-        destination = Grid.Instance.GetCell((uint)x, (uint)y).transform.position;
+        destination = Grid.Instance.GetCell((uint)x, (uint)y, 0).transform.localPosition;
+        destination -= poolLocalPos;
     }
 
     private void Update()
@@ -33,7 +41,7 @@ public class Meteorite : MonoBehaviour
         if (isLaunched)
         {
             t += Time.deltaTime;
-            self.position = Vector3.Lerp(start, destination, t);
+            self.localPosition = Vector3.Lerp(start, destination, t);
         }
     }
 }
