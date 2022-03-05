@@ -9,6 +9,8 @@ public class Meteorite : MonoBehaviour
     private Transform self;
     [SerializeField]
     private UnityEvent feedback;
+    [SerializeField]
+    private int damage;
 
     private bool isLaunched = false;
     private Vector3 start;
@@ -18,6 +20,9 @@ public class Meteorite : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         feedback.Invoke();
+        BaseBlock block = collision.collider.GetComponent<BaseBlock>();
+        if (block == null) return;
+        block.TakeDamages(damage);
     }
 
     private void Start()

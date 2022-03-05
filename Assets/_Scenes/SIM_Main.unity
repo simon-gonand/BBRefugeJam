@@ -295,6 +295,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5387609986051347501, guid: 2d81b66d29e1ecd4bb85127b2bc5bdbe, type: 3}
+      propertyPath: currentBloc
+      value: 
+      objectReference: {fileID: 7212543627645896434, guid: 5a2047b0278c6d84c9dcea8fca835f17, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d81b66d29e1ecd4bb85127b2bc5bdbe, type: 3}
 --- !u!1 &181432530
@@ -1154,11 +1158,11 @@ PrefabInstance:
       objectReference: {fileID: 938151591}
     - target: {fileID: 4430985221773025224, guid: 59503b56c720e8546afc3485ad4a6491, type: 3}
       propertyPath: width
-      value: 100
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4430985221773025224, guid: 59503b56c720e8546afc3485ad4a6491, type: 3}
       propertyPath: lenght
-      value: 100
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4430985221773025224, guid: 59503b56c720e8546afc3485ad4a6491, type: 3}
       propertyPath: cellWidth
