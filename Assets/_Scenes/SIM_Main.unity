@@ -1087,6 +1087,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   self: {fileID: 1492602325}
   prefab: {fileID: 9188207491754144465, guid: 9bdd58a0883ff8f43b2caed17641c5af, type: 3}
+  meteoritesPercentage: 0.8
 --- !u!4 &1492602325
 Transform:
   m_ObjectHideFlags: 0
