@@ -28,9 +28,6 @@ public class GroundRotation : MonoBehaviour
             mousePosition.x -= Screen.width / 2;
             mousePosition.y -= Screen.height / 2;
 
-            if ((mousePosition.y < 0.0f && self.eulerAngles.z > 90.0f && -(360 - self.eulerAngles.z) <= upRotationClamp) || 
-                (mousePosition.y > 0.0f && self.eulerAngles.z >= downRotationClamp)) return;
-
             mousePosition.x /= 100;
             mousePosition.y /= 75;
             if (mousePosition.x < deadZone.x && mousePosition.x > -deadZone.x)
@@ -38,7 +35,9 @@ public class GroundRotation : MonoBehaviour
             if (mousePosition.y < deadZone.y && mousePosition.y > -deadZone.y)
                 mousePosition.y = 0.0f;
 
-            self.RotateAround(self.position, zRotateAround.forward, mousePosition.y * speed * Time.deltaTime);
+            if (!(mousePosition.y < 0.0f && self.eulerAngles.z > 90.0f && -(360 - self.eulerAngles.z) <= upRotationClamp) ||
+                !(mousePosition.y > 0.0f && self.eulerAngles.z >= downRotationClamp))            
+                self.RotateAround(self.position, zRotateAround.forward, mousePosition.y * speed * Time.deltaTime);
 
             mousePosition.y = mousePosition.x;
             mousePosition.x = 0.0f;
