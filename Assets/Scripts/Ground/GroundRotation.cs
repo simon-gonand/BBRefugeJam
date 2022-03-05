@@ -14,10 +14,12 @@ public class GroundRotation : MonoBehaviour
     public Vector2 deadZone;
     public float upRotationClamp;
     public float downRotationClamp;
-    public float mouseSpeed;
+    public float rotateSpeed;
 
     [SerializeField]
     private float clickRotationSpeed;
+
+    private float rotationAngle = 0.0f;
 
     private bool canRotate = true;
     private float[] rotationBuffer = { 0.0f, 0.0f, 0.0f, 0.0f };
@@ -70,27 +72,28 @@ public class GroundRotation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButton(1))
+        float horizontalInput = Input.GetAxis("Horizontal");
+        float verticalInput = Input.GetAxis("Vertical");
+
+        if (horizontalInput != 0.0f)
         {
-            Vector3 mousePosition = Input.mousePosition;
-            mousePosition.x -= Screen.width / 2;
-            mousePosition.y -= Screen.height / 2;
-
-            mousePosition.x /= 100;
-            mousePosition.y /= 75;
-            if (mousePosition.x < deadZone.x && mousePosition.x > -deadZone.x)
-                mousePosition.x = 0.0f;
-            if (mousePosition.y < deadZone.y && mousePosition.y > -deadZone.y)
-                mousePosition.y = 0.0f;
-
-            if (!(mousePosition.y < 0.0f && self.eulerAngles.z > 90.0f && -(360 - self.eulerAngles.z) <= upRotationClamp) ||
-                !(mousePosition.y > 0.0f && self.eulerAngles.z >= downRotationClamp))            
-                self.RotateAround(self.position, zRotateAround.forward, mousePosition.y * mouseSpeed * Time.deltaTime);
-
-            mousePosition.y = -mousePosition.x;
-            mousePosition.x = 0.0f;
-            self.Rotate(mousePosition * mouseSpeed * Time.deltaTime);
+            self.Rotate(Vector3.up * horizontalInput * rotateSpeed * Time.deltaTime);
         }
+
+        if (verticalInput != 0.0f)
+        {
+            if ((verticalInput > 0.0f && rotationAngle > upRotationClamp) ||
+                (verticalInput < 0.0f && rotationAngle < downRotationClamp))
+            {
+                rotationAngle += -verticalInput * Time.deltaTime * rotateSpeed;
+                self.RotateAround(self.position, zRotateAround.forward, -verticalInput * Time.deltaTime * rotateSpeed);
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.A))
+            Rotate(-90.0f);
+        if (Input.GetKeyDown(KeyCode.E))
+            Rotate(90.0f);
 
         LerpRotation();
     }
