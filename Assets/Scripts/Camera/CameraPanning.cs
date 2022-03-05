@@ -8,18 +8,17 @@ public class CameraPanning : MonoBehaviour
     [SerializeField]
     private Transform self;
     [SerializeField]
-    private CameraRotation rotation;
+    private GroundRotation rotation;
 
     [Header("Stats")]
     [SerializeField]
     private Vector3 panClamp;
 
-    private Vector3 _posBeforePan;
-    public Vector3 posBeforePan { set { _posBeforePan = value; } }
+    private Vector3 posBeforePan;
 
     private void Start()
     {
-        _posBeforePan = self.position;
+        posBeforePan = self.position;
     }
 
     // Update is called once per frame
@@ -34,12 +33,12 @@ public class CameraPanning : MonoBehaviour
             mousePosition /= 100.0f;
 
             if ((mousePosition.x < rotation.deadZone.x && mousePosition.x > -rotation.deadZone.x) ||
-                (mousePosition.x < 0.0f && self.position.x <= _posBeforePan.x - panClamp.x) ||
-                (mousePosition.x > 0.0f && self.position.x >= _posBeforePan.x + panClamp.x))
+                (mousePosition.x < 0.0f && self.position.x <= posBeforePan.x - panClamp.x) ||
+                (mousePosition.x > 0.0f && self.position.x >= posBeforePan.x + panClamp.x))
                 mousePosition.x = 0.0f;
             if ((mousePosition.y < rotation.deadZone.y && mousePosition.y > -rotation.deadZone.y) ||
-                (mousePosition.y < 0.0f && self.position.y <= _posBeforePan.y - panClamp.y) ||
-                (mousePosition.y > 0.0f && self.position.y >= _posBeforePan.y + panClamp.y))
+                (mousePosition.y < 0.0f && self.position.y <= posBeforePan.y - panClamp.y) ||
+                (mousePosition.y > 0.0f && self.position.y >= posBeforePan.y + panClamp.y))
                 mousePosition.y = 0.0f;
 
             self.Translate(mousePosition * Time.deltaTime);

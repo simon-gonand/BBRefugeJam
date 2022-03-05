@@ -2,15 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraRotation : MonoBehaviour
+public class GroundRotation : MonoBehaviour
 {
     [Header("References")]
     [SerializeField]
     private Transform self;
     [SerializeField]
-    private Transform target;
-    [SerializeField]
-    private CameraPanning panning;
+    private Transform zRotateAround;
 
     [Header("Stats")]
     public Vector2 deadZone;
@@ -21,12 +19,6 @@ public class CameraRotation : MonoBehaviour
     [SerializeField]
     private float speed;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        self.LookAt(target);
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -36,19 +28,21 @@ public class CameraRotation : MonoBehaviour
             mousePosition.x -= Screen.width / 2;
             mousePosition.y -= Screen.height / 2;
 
-            if ((mousePosition.y < 0.0f && self.position.y >= upRotationClamp) || 
-                (mousePosition.y > 0.0f && self.position.y <= downRotationClamp)) return;
+            if ((mousePosition.y < 0.0f && self.eulerAngles.z > 90.0f && -(360 - self.eulerAngles.z) <= upRotationClamp) || 
+                (mousePosition.y > 0.0f && self.eulerAngles.z >= downRotationClamp)) return;
 
             mousePosition.x /= 100;
-            mousePosition.y /= -75;
+            mousePosition.y /= 75;
             if (mousePosition.x < deadZone.x && mousePosition.x > -deadZone.x)
                 mousePosition.x = 0.0f;
             if (mousePosition.y < deadZone.y && mousePosition.y > -deadZone.y)
                 mousePosition.y = 0.0f;
 
-            self.LookAt(target);
-            self.Translate(mousePosition * speed * Time.deltaTime);
-            panning.posBeforePan = self.position;
+            self.RotateAround(self.position, zRotateAround.forward, mousePosition.y * speed * Time.deltaTime);
+
+            mousePosition.y = mousePosition.x;
+            mousePosition.x = 0.0f;
+            self.Rotate(mousePosition * speed * Time.deltaTime);
         }
     }
 }
