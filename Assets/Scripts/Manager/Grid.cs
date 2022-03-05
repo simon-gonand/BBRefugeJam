@@ -92,7 +92,7 @@ public class Grid : MonoBehaviour
     public GameObject NewCell(GameObject underCell)
     {
         Cell underCellScript = underCell.GetComponent<Cell>();
-        GameObject newCell = Instantiate<GameObject>(cell, underCell.transform.position + new Vector3(0, BlocSelector.Instance.currentBloc.transform.localScale.y, 0), cell.transform.rotation);
+        GameObject newCell = Instantiate<GameObject>(cell, underCell.transform.position + new Vector3(0, BlocSelector.Instance.currentBloc.transform.localScale.y, 0), cell.transform.rotation, transform);
         newCell.GetComponent<Cell>().posInGrid = underCellScript.posInGrid + new Vector3(0, 1, 0);
         //newCell.GetComponent<Cell>().x = un
         grid[(int)underCellScript.posInGrid.x * width + (int)underCellScript.posInGrid.z, (int)underCellScript.posInGrid.y + 1] = newCell;
@@ -102,6 +102,7 @@ public class Grid : MonoBehaviour
     public void DeleteCell(Cell cell)
     {
         grid[(int)cell.posInGrid.x * width + (int)cell.posInGrid.z, (int)cell.posInGrid.y] = null;
+        cell.bloc = null;
         Destroy(cell.gameObject);
     }
 
