@@ -29,10 +29,10 @@ public class Meteorite : MonoBehaviour
     {
         isLaunched = true;
 
-        int x = Random.Range(0, (int)Grid.Instance.lenght - 1);
-        int y = Random.Range(0, (int)Grid.Instance.width - 1);
+        int x = Random.Range(0, (int)Grid.Instance.lenght);
+        int y = Random.Range(0, (int)Grid.Instance.width);
 
-        destination = Grid.Instance.GetCell((uint)x, (uint)y, 0).transform.localPosition;
+        destination = Grid.Instance.GetCell((uint)x, 0, (uint)y).transform.localPosition;
         destination -= poolLocalPos;
     }
 
