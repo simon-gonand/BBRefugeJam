@@ -364,8 +364,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 4
-      minScalar: 1
+      scalar: 0.4
+      minScalar: 0.1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -827,7 +827,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 3.7
+      value: 0.37
       mode: 0
       spread: 0
       speed:
@@ -5041,6 +5041,18 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0bcdd8bd72bd7384ba90d5bb8fbbed64, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0bcdd8bd72bd7384ba90d5bb8fbbed64, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0bcdd8bd72bd7384ba90d5bb8fbbed64, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0bcdd8bd72bd7384ba90d5bb8fbbed64, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -5162,6 +5174,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: PS_Death
       objectReference: {fileID: 0}
+    - target: {fileID: 8090646718422940531, guid: 98f23831be517a94ab490e82d6eae5db, type: 3}
+      propertyPath: ShapeModule.radius.value
+      value: 0.053
+      objectReference: {fileID: 0}
+    - target: {fileID: 8090646718422940531, guid: 98f23831be517a94ab490e82d6eae5db, type: 3}
+      propertyPath: ShapeModule.radiusThickness
+      value: 0.015
+      objectReference: {fileID: 0}
+    - target: {fileID: 8090646718422940531, guid: 98f23831be517a94ab490e82d6eae5db, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8090646718422940531, guid: 98f23831be517a94ab490e82d6eae5db, type: 3}
+      propertyPath: InitialModule.startSize.minScalar
+      value: 0.05
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 98f23831be517a94ab490e82d6eae5db, type: 3}
 --- !u!4 &8423079768850034688 stripped
@@ -5235,6 +5263,26 @@ PrefabInstance:
     - target: {fileID: 3822781327168265100, guid: 4a127bbb2369a6944a0a299e6601cae5, type: 3}
       propertyPath: m_Name
       value: PS_Explosion
+      objectReference: {fileID: 0}
+    - target: {fileID: 6617741840643244521, guid: 4a127bbb2369a6944a0a299e6601cae5, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 0.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 6617741840643244521, guid: 4a127bbb2369a6944a0a299e6601cae5, type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6617741840643244521, guid: 4a127bbb2369a6944a0a299e6601cae5, type: 3}
+      propertyPath: InitialModule.startSize.minScalar
+      value: 0.045
+      objectReference: {fileID: 0}
+    - target: {fileID: 6617741840643244521, guid: 4a127bbb2369a6944a0a299e6601cae5, type: 3}
+      propertyPath: InitialModule.startSpeed.minScalar
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6617741840643244521, guid: 4a127bbb2369a6944a0a299e6601cae5, type: 3}
+      propertyPath: InitialModule.gravityModifier.scalar
+      value: 0.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4a127bbb2369a6944a0a299e6601cae5, type: 3}
