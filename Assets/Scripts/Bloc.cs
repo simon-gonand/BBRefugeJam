@@ -16,8 +16,8 @@ public class Bloc : MonoBehaviour
 
     private void Update()
     {
-        Ray r = cam.ScreenPointToRay(Input.mousePosition);
-        Debug.DrawRay(r.origin, r.direction * 100, Color.red, 0.1f);
+        //Ray r = cam.ScreenPointToRay(Input.mousePosition);
+        //Debug.DrawRay(r.origin, r.direction * 100, Color.red, 0.1f);
     }
 
     void OnMouseOver()
@@ -25,12 +25,13 @@ public class Bloc : MonoBehaviour
         //TODO : highlight cell
 
         //add bloc on side
+        /*
         if (Input.GetMouseButtonDown(0))
         {
             //ray cast
             RaycastHit hit;
 
-            /* Draw ray from mouse position to check if we hit anything with certain layer */
+            // Draw ray from mouse position to check if we hit anything with certain layer 
             if (Physics.Raycast(cam.ScreenPointToRay(Input.mousePosition), out hit, Mathf.Infinity, layer))
             {
 
@@ -98,13 +99,73 @@ public class Bloc : MonoBehaviour
             }
 
         }
+        */
+        if (Input.GetMouseButtonDown(0))
+        {
+            //ray cast
+            RaycastHit hit;
+
+            // Draw ray from mouse position to check if we hit anything with certain layer 
+            if (Physics.Raycast(cam.ScreenPointToRay(Input.mousePosition), out hit, Mathf.Infinity, layer))
+            {
+                if (bottomCell == null) Debug.Log("ERROR : bottomCell is null");
+
+                Debug.Log(GetHitFace(hit));
+                switch (GetHitFace(hit))
+                {
+                    case MCFace.West:
+                        if (Grid.Instance.GetCell(bottomCell.posInGrid.x, bottomCell.posInGrid.y, bottomCell.posInGrid.z - 1) == null) break;
+                        Cell cellScript = Grid.Instance.GetCell(bottomCell.posInGrid.x, bottomCell.posInGrid.y, bottomCell.posInGrid.z - 1).GetComponent<Cell>();
+                        if (cellScript.bloc == null)
+                        {
+                            cellScript.AddBlocOnCell();
+                        }
+                        break;
+                    case MCFace.East:
+                        if (Grid.Instance.GetCell(bottomCell.posInGrid.x, bottomCell.posInGrid.y, bottomCell.posInGrid.z + 1) == null) break;
+                        Cell cellScript2 = Grid.Instance.GetCell(bottomCell.posInGrid.x, bottomCell.posInGrid.y, bottomCell.posInGrid.z + 1).GetComponent<Cell>();
+                        if (cellScript2.bloc == null)
+                        {
+                            cellScript2.AddBlocOnCell();
+                        }
+
+                        break;
+                    case MCFace.South:
+                        if (Grid.Instance.GetCell(bottomCell.posInGrid.x + 1, bottomCell.posInGrid.y, bottomCell.posInGrid.z) == null) break;
+                        Cell cellScript3 = Grid.Instance.GetCell(bottomCell.posInGrid.x + 1, bottomCell.posInGrid.y, bottomCell.posInGrid.z).GetComponent<Cell>();
+                        if (cellScript3.bloc == null)
+                        {
+                            cellScript3.AddBlocOnCell();
+                        }
+                        break;
+                    case MCFace.North:
+                        if (Grid.Instance.GetCell(bottomCell.posInGrid.x - 1, bottomCell.posInGrid.y, bottomCell.posInGrid.z) == null) break;
+                        Cell cellScript4 = Grid.Instance.GetCell(bottomCell.posInGrid.x - 1, bottomCell.posInGrid.y, bottomCell.posInGrid.z).GetComponent<Cell>();
+                        if (cellScript4.bloc == null)
+                        {
+                            cellScript4.AddBlocOnCell();
+                        }
+                        break;
+                    default:
+                        //nothing happens
+                        break;
+                }
+
+            }
+            else
+            {
+                Debug.Log("not on block");
+            }
+
+        }
 
 
         //delete bloc
         if (Input.GetMouseButtonDown(1))
         {
-            Grid.Instance.DeleteCell(topCell);
-            if(bottomCell.bloc != null) bottomCell.mc.enabled = true;
+            topCell.gameObject.SetActive(false);
+            //Grid.Instance.DeleteCell(topCell);
+            //if (bottomCell.bloc != null) bottomCell.mc.enabled = true;
             Destroy(gameObject);
         }
 
