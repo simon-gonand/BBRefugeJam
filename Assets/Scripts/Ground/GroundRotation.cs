@@ -19,6 +19,11 @@ public class GroundRotation : MonoBehaviour
     [SerializeField]
     private float speed;
 
+    public void Rotate(float angle)
+    {
+        self.Rotate(new Vector3(0.0f, angle, 0.0f));
+    }
+
     // Update is called once per frame
     void Update()
     {
