@@ -39,7 +39,8 @@ public class CameraPanning : MonoBehaviour
                 mousePosition.x = 0.0f;
             if ((mousePosition.y < rotation.deadZone.y && mousePosition.y > -rotation.deadZone.y) ||
                 (mousePosition.y < 0.0f && self.position.y <= _posBeforePan.y - panClamp.y) ||
-                (mousePosition.y > 0.0f && self.position.y >= _posBeforePan.y + panClamp.y))
+                (mousePosition.y > 0.0f && self.position.y >= _posBeforePan.y + panClamp.y) ||
+                (mousePosition.y < 0.0f && self.position.y <= 0.0f))
                 mousePosition.y = 0.0f;
 
             self.Translate(mousePosition * Time.deltaTime);
