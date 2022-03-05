@@ -17,11 +17,55 @@ public class GroundRotation : MonoBehaviour
     [SerializeField]
     private float downRotationClamp;
     [SerializeField]
-    private float speed;
+    private float mouseSpeed;
+    [SerializeField]
+    private float clickRotationSpeed;
+
+    private bool canRotate = true;
+    private float[] rotationBuffer = { 0.0f, 0.0f, 0.0f, 0.0f };
 
     public void Rotate(float angle)
     {
-        self.Rotate(new Vector3(0.0f, angle, 0.0f));
+        for (int i = 0; i < rotationBuffer.Length; ++i)
+        {
+            if (rotationBuffer[i] == 0.0f)
+            {
+                rotationBuffer[i] = angle;
+                return;
+            }
+        }
+    }
+
+    private void LerpRotation()
+    {
+        if (canRotate)
+        {
+            for (int i = 0; i < rotationBuffer.Length; ++i)
+            {
+                if (rotationBuffer[i] != 0.0f)
+                {
+                    StartCoroutine(LerpRotationCoroutine(rotationBuffer[i]));
+                    rotationBuffer[i] = 0.0f;
+                    return;
+                }
+            }
+        }
+    }
+
+    private IEnumerator LerpRotationCoroutine(float angle)
+    {
+        canRotate = false;
+        float t = 0.0f;
+        Quaternion startRotation = self.rotation;
+        Quaternion endRotation = Quaternion.Euler(self.eulerAngles.x, self.eulerAngles.y + angle, self.eulerAngles.z);
+        while (t < 1.0f)
+        {
+            t += Time.deltaTime * clickRotationSpeed;
+            self.rotation = Quaternion.Slerp(startRotation, endRotation, t);
+            yield return null;
+        }
+
+        canRotate = true;
     }
 
     // Update is called once per frame
@@ -42,11 +86,13 @@ public class GroundRotation : MonoBehaviour
 
             if (!(mousePosition.y < 0.0f && self.eulerAngles.z > 90.0f && -(360 - self.eulerAngles.z) <= upRotationClamp) ||
                 !(mousePosition.y > 0.0f && self.eulerAngles.z >= downRotationClamp))            
-                self.RotateAround(self.position, zRotateAround.forward, mousePosition.y * speed * Time.deltaTime);
+                self.RotateAround(self.position, zRotateAround.forward, mousePosition.y * mouseSpeed * Time.deltaTime);
 
             mousePosition.y = mousePosition.x;
             mousePosition.x = 0.0f;
-            self.Rotate(mousePosition * speed * Time.deltaTime);
+            self.Rotate(mousePosition * mouseSpeed * Time.deltaTime);
         }
+
+        LerpRotation();
     }
 }

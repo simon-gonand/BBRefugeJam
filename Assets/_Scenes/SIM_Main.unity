@@ -1066,4 +1066,5 @@ MonoBehaviour:
   deadZone: {x: 2, y: 2}
   upRotationClamp: -45
   downRotationClamp: 20
-  speed: 3
+  mouseSpeed: 3
+  clickRotationSpeed: 5
