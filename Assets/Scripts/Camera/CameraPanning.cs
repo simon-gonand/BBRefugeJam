@@ -13,6 +13,8 @@ public class CameraPanning : MonoBehaviour
     [Header("Stats")]
     [SerializeField]
     private Vector3 panClamp;
+    [SerializeField]
+    private float speed;
 
     private Vector3 _posBeforePan;
     public Vector3 posBeforePan {set{_posBeforePan = value;}}
@@ -43,7 +45,7 @@ public class CameraPanning : MonoBehaviour
                 (mousePosition.y < 0.0f && self.position.y <= 0.0f))
                 mousePosition.y = 0.0f;
 
-            self.Translate(mousePosition * Time.deltaTime);
+            self.Translate(mousePosition * speed * Time.deltaTime);
         }
     }
 }

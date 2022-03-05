@@ -17,15 +17,16 @@ public class Meteorite : MonoBehaviour
         start = self.position;
     }
 
-    public void Launch()
+    public void Launch(Vector3 poolLocalPos)
     {
         isLaunched = true;
 
         int x = Random.Range(0, (int)Grid.Instance.lenght - 1);
         int y = Random.Range(0, (int)Grid.Instance.width - 1);
-        int z = Random.Range(0, (int)Grid.Instance.heightMax - 1);
+        //int z = Random.Range(0, (int)Grid.Instance.heightMax - 1);
 
-        destination = Grid.Instance.GetCell((uint)x, (uint)y).transform.position;
+        destination = Grid.Instance.GetCell((uint)x, (uint)y).transform.localPosition;
+        destination -= poolLocalPos;
     }
 
     private void Update()
@@ -33,7 +34,7 @@ public class Meteorite : MonoBehaviour
         if (isLaunched)
         {
             t += Time.deltaTime;
-            self.position = Vector3.Lerp(start, destination, t);
+            self.localPosition = Vector3.Lerp(start, destination, t);
         }
     }
 }

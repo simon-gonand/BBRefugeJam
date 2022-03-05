@@ -12,12 +12,10 @@ public class GroundRotation : MonoBehaviour
 
     [Header("Stats")]
     public Vector2 deadZone;
-    [SerializeField]
-    private float upRotationClamp;
-    [SerializeField]
-    private float downRotationClamp;
-    [SerializeField]
-    private float mouseSpeed;
+    public float upRotationClamp;
+    public float downRotationClamp;
+    public float mouseSpeed;
+
     [SerializeField]
     private float clickRotationSpeed;
 
