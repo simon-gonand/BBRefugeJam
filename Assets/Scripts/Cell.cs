@@ -10,11 +10,12 @@ public class Cell : MonoBehaviour
 
     //component
     public MeshRenderer mc;
+    public BoxCollider bc;
 
     // Start is called before the first frame update
     void Start()
     {
-        mc = GetComponent<MeshRenderer>();
+        //mc = GetComponent<MeshRenderer>();
     }
 
     // Update is called once per frame
@@ -33,7 +34,7 @@ public class Cell : MonoBehaviour
         //TODO : highlight cell
 
         //Put current selected bloc
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && bc.enabled)
         {
             AddBlocOnCell();
 
@@ -47,8 +48,18 @@ public class Cell : MonoBehaviour
         Vector3 pos = transform.position;
         bloc = Instantiate<GameObject>(BlocSelector.Instance.currentBloc, new Vector3(pos.x, pos.y + BlocSelector.Instance.currentBloc.transform.localScale.y/2, pos.z), BlocSelector.Instance.currentBloc.transform.rotation, Grid.Instance.transform);
         bloc.GetComponent<Bloc>().bottomCell = this;
-        bloc.GetComponent<Bloc>().topCell = Grid.Instance.NewCell(gameObject).GetComponent<Cell>();
+        if (Grid.Instance.GetCell(posInGrid.x, posInGrid.y + 1, posInGrid.z).GetComponent<Cell>() != null)
+        {
+            bloc.GetComponent<Bloc>().topCell = Grid.Instance.GetCell(posInGrid.x, posInGrid.y + 1, posInGrid.z).GetComponent<Cell>();
+        }
 
+        Cell newBlocBottomCell = Grid.Instance.GetCell(posInGrid.x, posInGrid.y + 1, posInGrid.z).GetComponent<Cell>();
+        if(newBlocBottomCell.bloc == null)
+        {
+            Grid.Instance.GetCell(posInGrid.x, posInGrid.y + 1, posInGrid.z).GetComponent<Cell>().bc.enabled = true;
+            Grid.Instance.GetCell(posInGrid.x, posInGrid.y + 1, posInGrid.z).GetComponent<Cell>().mc.enabled = true;
+        }
+        bc.enabled = false;
         mc.enabled = false;
     }
 }

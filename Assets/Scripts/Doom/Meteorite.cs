@@ -32,7 +32,7 @@ public class Meteorite : MonoBehaviour
         int x = Random.Range(0, (int)Grid.Instance.lenght - 1);
         int y = Random.Range(0, (int)Grid.Instance.width - 1);
 
-        destination = Grid.Instance.GetCell((uint)x, (uint)y).transform.localPosition;
+        destination = Grid.Instance.GetCell((uint)x, (uint)y, 0).transform.localPosition;
         destination -= poolLocalPos;
     }
 

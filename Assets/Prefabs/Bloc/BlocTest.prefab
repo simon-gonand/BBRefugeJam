@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8645405307240694395}
   - component: {fileID: 8645405307240694394}
   - component: {fileID: 8645405307240694393}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BlocTest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,7 +46,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa8aec77f000be047b3b32144fcb4a05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cell: {fileID: 0}
+  bottomCell: {fileID: 0}
+  topCell: {fileID: 0}
+  cam: {fileID: 0}
+  layer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!33 &8645405307240694395
 MeshFilter:
   m_ObjectHideFlags: 0

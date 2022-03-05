@@ -8,6 +8,8 @@ using TMPro;
 public class BlockSelectorMenu : MonoBehaviour
 {
 
+    public TextMeshProUGUI seedNameText;
+
     public static BlockSelectorMenu instance;
     public TextMeshProUGUI moneyText;
     public InfoPanel infoPanel;
@@ -72,6 +74,6 @@ public class BlockSelectorMenu : MonoBehaviour
 
     private void Update()
     {
-        moneyText.text = "CASH: " + PlayerData.instance.money.ToString() + "$";
+        moneyText.text = "CASH: " + Player.instance.money.ToString() + "$";
     }
 }
