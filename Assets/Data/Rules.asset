@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5eb11355c09a78b4cb5b7cf6a4371d24, type: 3}
   m_Name: Rules
   m_EditorClassIdentifier: 
-  initialMoney: 5000
-  beautyMultiplier: 1
+  seedName: MAKE IT BEAUTIFUL
+  initialMoney: 4570
+  beautyMultiplier: 5.05
   waterMultiplier: 1
   foodMultiplier: 1
   energyMultiplier: 1

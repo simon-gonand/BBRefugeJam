@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerData : MonoBehaviour
+public class Player : MonoBehaviour
 {
 
     public int money { get; private set; }
 
     public GameRules rules;
 
-    public static PlayerData instance;
+    public static Player instance;
 
     private void Awake()
     {
@@ -31,4 +31,5 @@ public class PlayerData : MonoBehaviour
     {
         money -= amount;
     }
+
 }

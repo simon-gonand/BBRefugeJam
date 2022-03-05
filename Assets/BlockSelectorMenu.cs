@@ -74,6 +74,6 @@ public class BlockSelectorMenu : MonoBehaviour
 
     private void Update()
     {
-        moneyText.text = "CASH: " + PlayerData.instance.money.ToString() + "$";
+        moneyText.text = "CASH: " + Player.instance.money.ToString() + "$";
     }
 }

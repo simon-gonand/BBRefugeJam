@@ -90,6 +90,8 @@ public class ScoreManager : MonoBehaviour
             }
         }
 
-        return weaponryScore + energyScore + foodScore + waterScore;
+        GameRules rules = Player.instance.rules;
+
+        return (int)Mathf.Lerp(0, 100, Mathf.InverseLerp(0, initialHP,  (weaponryScore * rules.equipmentMultiplier) + (energyScore * rules.energyMultiplier) + (foodScore * rules.foodMultiplier) + (waterScore * rules.waterMultiplier)));
     }
 }
