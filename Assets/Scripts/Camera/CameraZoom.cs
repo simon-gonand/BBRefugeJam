@@ -9,11 +9,11 @@ public class CameraZoom : MonoBehaviour
     [SerializeField]
     private CameraPanning cameraPanning;
 
-    private float startZ;
+    private Vector3 startPos;
 
     private void Start()
     {
-        startZ = self.position.z;
+        startPos = self.position;
     }
 
     // Update is called once per frame
@@ -28,8 +28,8 @@ public class CameraZoom : MonoBehaviour
         }
         else if (Input.mouseScrollDelta.y < 0.0f)
         {
-            if (self.position.z <= startZ) return;
-            self.Translate(new Vector3(0.0f, 0.0f, -1.0f));
+            if (self.position.z <= startPos.z) return;
+            self.position = Vector3.MoveTowards(self.position, startPos, 1.0f);
             cameraPanning.posBeforePan = self.position;
         }
     }
