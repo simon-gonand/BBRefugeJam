@@ -1,15 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class MeteorCS : MonoBehaviour
 {
-    [SerializeField] GameObject hitPS;
+    [SerializeField] GameObject destroyFeedbacks;
+    [SerializeField] float destroyFeedbackDuration;
 
-    private void OnCollisionEnter(Collision collision)
+    public void Collide()
     {
-        GameObject ps = Instantiate(hitPS, transform);
-        ps.transform.parent = null;
+        destroyFeedbacks.transform.parent = null;
+        destroyFeedbacks.SetActive(true);
+        Destroy(destroyFeedbacks, destroyFeedbackDuration);
         Destroy(this.gameObject);
     }
 }

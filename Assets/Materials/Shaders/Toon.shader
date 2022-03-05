@@ -63,7 +63,7 @@ Shader "Jam/Toon"
                 o.pos = UnityObjectToClipPos(v.pos);
                 o.worldPos = mul(unity_ObjectToWorld, v.pos);
                 o.worldNormal = UnityObjectToWorldNormal(v.normal);
-                o.uv = v.uv;
+                o.uv = TRANSFORM_TEX(v.uv, _MainTex);
                 o.color = v.color;
                 o.viewDir = normalize(WorldSpaceViewDir(v.pos));
                 TRANSFER_SHADOW(o)
