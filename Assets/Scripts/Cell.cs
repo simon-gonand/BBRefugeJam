@@ -8,6 +8,7 @@ public class Cell : MonoBehaviour
     public Vector3 posInGrid;
     public GameObject bloc;
 
+    public uint x, y, height;
 
     // Start is called before the first frame update
     void Start()
@@ -33,8 +34,16 @@ public class Cell : MonoBehaviour
         //Put current selected bloc
         if (Input.GetMouseButtonDown(0))
         {
+            AddBlocOnCell();
             Debug.Log(posInGrid);
         }
 
+    }
+
+    public void AddBlocOnCell()
+    {
+        Vector3 pos = transform.position;
+        bloc = Instantiate<GameObject>(BlocSelector.Instance.currentBloc, new Vector3(pos.x, pos.y + BlocSelector.Instance.currentBloc.transform.localScale.y/2, pos.z), BlocSelector.Instance.currentBloc.transform.rotation);
+        Grid.Instance.NewCell(gameObject);
     }
 }
