@@ -164,6 +164,11 @@ public class Bloc : MonoBehaviour
         if (Input.GetMouseButtonDown(1))
         {
             topCell.gameObject.SetActive(false);
+            if(bottomCell.posInGrid.y == 0)
+            {
+                bottomCell.mc.enabled = true;
+                bottomCell.bc.enabled = true;
+            }
             //Grid.Instance.DeleteCell(topCell);
             //if (bottomCell.bloc != null) bottomCell.mc.enabled = true;
             Destroy(gameObject);
