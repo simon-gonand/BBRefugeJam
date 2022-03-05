@@ -10,10 +10,13 @@ public class Cell : MonoBehaviour
 
     public uint x, y, height;
 
+    //component
+    public MeshRenderer mc;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        mc = GetComponent<MeshRenderer>();
     }
 
     // Update is called once per frame
@@ -35,7 +38,8 @@ public class Cell : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             AddBlocOnCell();
-            Debug.Log(posInGrid);
+
+            //Debug.Log(posInGrid);
         }
 
     }
@@ -44,6 +48,9 @@ public class Cell : MonoBehaviour
     {
         Vector3 pos = transform.position;
         bloc = Instantiate<GameObject>(BlocSelector.Instance.currentBloc, new Vector3(pos.x, pos.y + BlocSelector.Instance.currentBloc.transform.localScale.y/2, pos.z), BlocSelector.Instance.currentBloc.transform.rotation);
-        Grid.Instance.NewCell(gameObject);
+        bloc.GetComponent<Bloc>().bottomCell = this;
+        bloc.GetComponent<Bloc>().topCell = Grid.Instance.NewCell(gameObject).GetComponent<Cell>();
+
+        mc.enabled = false;
     }
 }

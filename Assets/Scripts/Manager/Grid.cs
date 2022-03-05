@@ -79,11 +79,18 @@ public class Grid : MonoBehaviour
         return grid[x * width + y, height];
     }
 
-    public void NewCell(GameObject underCell)
+    public GameObject NewCell(GameObject underCell)
     {
         GameObject newCell = Instantiate<GameObject>(cell, underCell.transform.position + new Vector3(0, BlocSelector.Instance.currentBloc.transform.localScale.y, 0), cell.transform.rotation);
         newCell.GetComponent<Cell>().posInGrid = underCell.transform.position + new Vector3(0, BlocSelector.Instance.currentBloc.transform.localScale.y, 0);
         grid[newCell.GetComponent<Cell>().x * width + newCell.GetComponent<Cell>().y, newCell.GetComponent<Cell>().height++] = newCell;
+        return newCell;
+    }
+
+    public void DeleteCell(Cell cell)
+    {
+        grid[cell.x * width + cell.y, cell.height] = null;
+        Destroy(cell.gameObject);
     }
 
     
