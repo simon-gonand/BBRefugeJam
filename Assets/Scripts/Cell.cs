@@ -45,7 +45,7 @@ public class Cell : MonoBehaviour
     public void AddBlocOnCell()
     {
         Vector3 pos = transform.position;
-        bloc = Instantiate<GameObject>(BlocSelector.Instance.currentBloc, new Vector3(pos.x, pos.y + BlocSelector.Instance.currentBloc.transform.localScale.y/2, pos.z), BlocSelector.Instance.currentBloc.transform.rotation);
+        bloc = Instantiate<GameObject>(BlocSelector.Instance.currentBloc, new Vector3(pos.x, pos.y + BlocSelector.Instance.currentBloc.transform.localScale.y/2, pos.z), BlocSelector.Instance.currentBloc.transform.rotation, Grid.Instance.transform);
         bloc.GetComponent<Bloc>().bottomCell = this;
         bloc.GetComponent<Bloc>().topCell = Grid.Instance.NewCell(gameObject).GetComponent<Cell>();
 

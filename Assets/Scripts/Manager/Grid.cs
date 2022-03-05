@@ -60,7 +60,7 @@ public class Grid : MonoBehaviour
         {
             for (int j = 0; j < lenght; j++)
             {
-                GameObject newCell = Instantiate<GameObject>(cell, new Vector3(startX, 0, startY), cell.transform.rotation);
+                GameObject newCell = Instantiate<GameObject>(cell, new Vector3(startX, 0, startY), cell.transform.rotation, transform);
                 newCell.GetComponent<Cell>().posInGrid = new Vector3(i, 0, j);
                 grid[i * width + j, 0] = newCell;
                 startX += cellWidth;
