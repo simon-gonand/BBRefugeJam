@@ -83,7 +83,7 @@ public class ScoreManager : MonoBehaviour
                     case ResourceType.Energy:
                         energyScore += r.value;
                         break;
-                    case ResourceType.Weaponry:
+                    case ResourceType.Equipment:
                         weaponryScore += r.value;
                         break;
                 }

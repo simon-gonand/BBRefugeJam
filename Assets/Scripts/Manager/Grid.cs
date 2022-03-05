@@ -124,6 +124,30 @@ public class Grid : MonoBehaviour
         return grid[(int)x, (int)y, (int)z];
     }
 
+    public List<GameObject> GetAdjacentCells(float x, float y, float z, int depth = 1)
+    {
+
+        List<GameObject> result = new List<GameObject>();
+
+        for (int i = 1; i <= depth; i++)
+        {
+            result.Add(GetCell(x - i, y, z));
+            result.Add(GetCell(x + i, y, z));
+            result.Add(GetCell(x, y, z - i));
+            result.Add(GetCell(x, y, z + i));
+        }
+
+        for (int i = 0; i < result.Count; i++)
+        {
+            if (result[i] == null) result.RemoveAt(i);
+        }
+
+        //get inexistant cell
+        if (x < 0 || x >= width || z < 0 || z >= lenght || y >= heightMax) return null;
+
+        return result;
+    }
+
     public GameObject GetHighestCell(uint x, uint y)
     {
         for (uint i = 0; i < heightMax; i++)

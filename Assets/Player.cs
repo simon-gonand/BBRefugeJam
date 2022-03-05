@@ -9,6 +9,9 @@ public class Player : MonoBehaviour
 
     public GameRules rules;
 
+    public Cell currentlyHoveredCell;
+    public BaseBlock currentBlock;
+
     public static Player instance;
 
     private void Awake()
@@ -30,6 +33,14 @@ public class Player : MonoBehaviour
     public void RemoveMoney(int amount)
     {
         money -= amount;
+    }
+
+    public void CheckNeighbourAvailibility()
+    {
+        if(currentlyHoveredCell)
+        {
+
+        }
     }
 
 }

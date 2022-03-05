@@ -41,5 +41,5 @@ public enum ResourceType
     Water,
     Food,
     Energy,
-    Weaponry
+    Equipment
 }

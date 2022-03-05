@@ -6,6 +6,8 @@ using TMPro;
 
 public class InfoPanel : MonoBehaviour
 {
+    public TextMeshProUGUI blockNameText;
+
     public TextMeshProUGUI priceText;
     public TextMeshProUGUI hpText;
     public TextMeshProUGUI resistanceText;
@@ -31,6 +33,8 @@ public class InfoPanel : MonoBehaviour
 
     public void Load(BlockData data)
     {
+
+        blockNameText.text = data.blockName;
         priceText.text = data.price.ToString() + "$";
         hpText.text = data.hp.ToString();
         resistanceText.text = data.resistance.ToString();
@@ -50,7 +54,7 @@ public class InfoPanel : MonoBehaviour
                 case ResourceType.Energy:
                     energyText.text = r.value.ToString();
                     break;
-                case ResourceType.Weaponry:
+                case ResourceType.Equipment:
                     weaponryText.text = r.value.ToString();
                     break;
             }
