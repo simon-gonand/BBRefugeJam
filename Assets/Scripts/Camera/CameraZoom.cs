@@ -19,7 +19,7 @@ public class CameraZoom : MonoBehaviour
 
     private void Start()
     {
-        self.position *= Grid.Instance.width;
+        self.position *= Grid.Instance.width / 10;
         _startPos = self.position;
         startZ = self.position.z;
     }

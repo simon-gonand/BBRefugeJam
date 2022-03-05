@@ -1154,15 +1154,15 @@ PrefabInstance:
       objectReference: {fileID: 938151591}
     - target: {fileID: 4430985221773025224, guid: 59503b56c720e8546afc3485ad4a6491, type: 3}
       propertyPath: width
-      value: 10
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 4430985221773025224, guid: 59503b56c720e8546afc3485ad4a6491, type: 3}
       propertyPath: lenght
-      value: 10
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 4430985221773025224, guid: 59503b56c720e8546afc3485ad4a6491, type: 3}
       propertyPath: cellWidth
-      value: 10
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8705360595358655249, guid: 59503b56c720e8546afc3485ad4a6491, type: 3}
       propertyPath: m_Name
