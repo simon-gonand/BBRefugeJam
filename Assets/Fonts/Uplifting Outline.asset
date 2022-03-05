@@ -161,11 +161,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
-  m_Name: Uplifting SDF
+  m_Name: Uplifting Outline
   m_EditorClassIdentifier: 
-  hashCode: 1159962243
+  hashCode: 478496530
   material: {fileID: -2125366531669749890}
-  materialHashCode: -507095485
+  materialHashCode: -1036348302
   m_Version: 1.1.0
   m_SourceFontFileGUID: a85882e2cb90b604c82c5f2b4dd49cea
   m_SourceFontFile_EditorRef: {fileID: 12800000, guid: a85882e2cb90b604c82c5f2b4dd49cea, type: 3}

@@ -122,3 +122,4 @@ MonoBehaviour:
   onDeath:
     m_PersistentCalls:
       m_Calls: []
+  modifiers: []

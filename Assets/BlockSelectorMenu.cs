@@ -8,6 +8,8 @@ using TMPro;
 public class BlockSelectorMenu : MonoBehaviour
 {
 
+    public TextMeshProUGUI seedNameText;
+
     public static BlockSelectorMenu instance;
     public TextMeshProUGUI moneyText;
     public InfoPanel infoPanel;

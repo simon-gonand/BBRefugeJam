@@ -3,29 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-[System.Serializable]
+[CreateAssetMenu(fileName = "New Rules", menuName = "Game Rules")]
 public class GameRules : ScriptableObject
 {
 
-    int initialMoney = 5000;
+    public string seedName;
 
-    float beautyMultiplier = 1f;
+    public int initialMoney = 5000;
 
-    float waterMultiplier = 1f;
-    float foodMultiplier = 1f;
-    float energyMultiplier = 1f;
-    float equipmentMultiplier = 1f;
-  
+    [Range(0, 10)]
+    public float beautyMultiplier = 1f;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [Range(0, 10)]
+    public float waterMultiplier = 1f;
+    [Range(0, 10)]
+    public float foodMultiplier = 1f;
+    [Range(0, 10)]
+    public float energyMultiplier = 1f;
+    [Range(0, 10)]
+    public float equipmentMultiplier = 1f;
 }

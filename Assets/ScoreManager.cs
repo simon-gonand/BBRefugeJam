@@ -7,8 +7,6 @@ public class ScoreManager : MonoBehaviour
 
     public static ScoreManager instance;
 
-    public GameRules rules;
-
     private void Awake()
     {
         instance = this;
