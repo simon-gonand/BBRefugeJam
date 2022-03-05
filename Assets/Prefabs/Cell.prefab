@@ -49,6 +49,7 @@ MonoBehaviour:
   posInGrid: {x: 0, y: 0, z: 0}
   bloc: {fileID: 0}
   mc: {fileID: 8040355687463692166}
+  bc: {fileID: 8040355687463692169}
 --- !u!33 &8040355687463692167
 MeshFilter:
   m_ObjectHideFlags: 0
