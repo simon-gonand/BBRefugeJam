@@ -1023,7 +1023,7 @@ MonoBehaviour:
   upRotationClamp: -45
   downRotationClamp: 20
   mouseSpeed: 3
-  clickRotationSpeed: 5
+  clickRotationSpeed: 200
 --- !u!4 &1503128416 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4010075312264758243, guid: 59503b56c720e8546afc3485ad4a6491, type: 3}
