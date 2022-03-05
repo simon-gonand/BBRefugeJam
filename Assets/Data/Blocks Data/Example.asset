@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blockName: Test Block
   thumbnail: {fileID: 21300000, guid: 35d9ec6a557b43245b8d91c6351497d9, type: 3}
-  price: 550
-  hp: 100
-  resistance: 50
-  beauty: 45
+  price: 558
+  hp: 1000
+  resistance: 219
+  beauty: 55
   resources: []

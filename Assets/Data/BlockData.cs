@@ -20,7 +20,7 @@ public class BlockData : ScriptableObject
     public int resistance;
 
     [Header("Beauty Score")]
-    [ColorRange(1, 1, 1, 0.83f, 0.38f, 0.83f), Clamped(0, 100)]
+    [ColorRange(1, 1, 1, 0.83f, 0.38f, 0.83f), Clamped(-50, 100)]
     public int beauty;
 
     [Header("Survival Score")]

@@ -18,6 +18,8 @@ public class Grid : MonoBehaviour
     //public GameObject[, ] grid;
     public GameObject[, , ] grid;
 
+    public GroundRotation gr;
+
     // Start is called before the first frame update
     void Start()
     {

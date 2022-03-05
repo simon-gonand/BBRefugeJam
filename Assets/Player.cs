@@ -2,16 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerData : MonoBehaviour
+public class Player : MonoBehaviour
 {
 
     public int money { get; private set; }
 
-    public static PlayerData instance;
+    public GameRules rules;
+
+    public static Player instance;
 
     private void Awake()
     {
         instance = this;
+    }
+
+    private void Start()
+    {
+        money = rules.initialMoney;
+        BlockSelectorMenu.instance.seedNameText.text = rules.seedName.ToString();
     }
 
     public void AddMoney(int amount)
@@ -23,4 +31,5 @@ public class PlayerData : MonoBehaviour
     {
         money -= amount;
     }
+
 }
