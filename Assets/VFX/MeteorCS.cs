@@ -10,7 +10,7 @@ public class MeteorCS : MonoBehaviour
 
     public void Collide()
     {
-        destroyFeedbacks.transform.parent = null;
+        destroyFeedbacks.transform.parent = transform.parent.transform;
         destroyFeedbacks.SetActive(true);
         Destroy(destroyFeedbacks, destroyFeedbackDuration);
         Destroy(this.gameObject);

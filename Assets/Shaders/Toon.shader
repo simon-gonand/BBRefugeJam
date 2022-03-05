@@ -6,6 +6,8 @@ Shader "Jam/Toon"
         _Color("Base Color", Color) = (1,1,1,1)
         _ColorR("Blend Color R", Color) = (1,1,1,1)
 
+        [Toggle]_OnlyVCol ("Only Use Vertex Color", Float) = 0
+
         [Header(Specular)][Space(10)]
         _SpecIntensity("Specular Intensity", Range(0.0,1.0)) = 0.
         _SpecSize("Specular Size", Range(0.0,1.0)) = 0.9
@@ -55,7 +57,7 @@ Shader "Jam/Toon"
 
             sampler2D _MainTex;
             float4 _MainTex_ST, _Color, _ColorR, _FresnelCol;
-            float _SpecIntensity, _SpecSize, _FresnelMin, _FresnelMax;
+            float _SpecIntensity, _SpecSize, _FresnelMin, _FresnelMax, _OnlyVCol;
 
             v2f vert(appdata v)
             {
@@ -94,6 +96,7 @@ Shader "Jam/Toon"
                 diffuse += ShadeSH9(half4(normal, 1));
 
                 col.rgb = lerp(_Color, _ColorR, i.color.r);
+                if(_OnlyVCol > 0.5) col.rgb = i.color.rgb;
                 col.rgb *= tex;
                 col.rgb *= _Color * diffuse;
                 col.rgb += spec * _LightColor0 * _SpecIntensity;
