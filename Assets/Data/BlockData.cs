@@ -6,10 +6,17 @@ using UnityEngine;
 
 public class BlockData : ScriptableObject
 {
+    [Header("General")]
+    public string blockName;
+    public Sprite thumbnail;
+
+    [ColorRange(1, 1, 1, 0.83f, 0.83f, 0.38f), Clamped(0, 1000)]
+    public int price;
+
     [Header("Resistance Score")]
-    [ColorRange(1, 1, 1, 0.38f, 0.83f, 0.38f), Clamped(0, 100)]
+    [ColorRange(1, 1, 1, 0.38f, 0.83f, 0.38f), Clamped(0, 1000)]
     public int hp;
-    [ColorRange(1, 1, 1, 0.38f, 0.74f, 0.83f), Clamped(0, 100)]
+    [ColorRange(1, 1, 1, 0.38f, 0.74f, 0.83f), Clamped(0, 500)]
     public int resistance;
 
     [Header("Beauty Score")]
@@ -24,8 +31,8 @@ public class BlockData : ScriptableObject
 public class Resource
 {
     public ResourceType type;
-    [Clamped(0,100)]
-    public int value;
+    [Clamped(-100,100)]
+    public int value = 0;
 }
 
 
