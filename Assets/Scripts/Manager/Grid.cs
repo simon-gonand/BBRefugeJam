@@ -44,7 +44,6 @@ public class Grid : MonoBehaviour
         
     }
 
-
     public void GenerateGrid()
     {
         ///WARNING : width & lenght must be pair
@@ -73,6 +72,11 @@ public class Grid : MonoBehaviour
 
     public GameObject GetCell(uint x, uint y, uint height = 0)
     {
+        //get inexistant cell
+        if (x < 0 || x > width || y < 0 || y > lenght) return null;
+
+        Debug.Log("X: " + x + ", Y: " + y + ", height: " + height);
+
         return grid[x * width + y, height];
     }
 
@@ -99,6 +103,68 @@ public class Grid : MonoBehaviour
         return newCell;
     }
 
+    /*public GameObject NewCell(uint x, uint y, uint height)
+    {
+        float startX = -(width / 2) * cellWidth;
+        float startY = (lenght / 2) * cellWidth;
+
+        for (int i = 0; i < width; i++)
+        {
+            for (int j = 0; j < lenght; j++)
+            {
+                if(i == x && j == y)
+                {
+                    GameObject newCell = Instantiate<GameObject>(cell, new Vector3(startX, height * cellWidth, startY), cell.transform.rotation, transform);
+                    newCell.GetComponent<Cell>().posInGrid = new Vector3(x, height, y);
+                    grid[i * width + j, height] = newCell;
+                    startX += cellWidth;
+
+                    return newCell;
+                }
+
+            }
+            startX = -(width / 2) * cellWidth;
+            startY -= cellWidth;
+        }
+
+        return null;
+    }*/
+
+    public GameObject NewCell(GameObject originCell, MCFace dir)
+    {
+        Cell underCellScript = originCell.GetComponent<Cell>();
+
+        switch (dir)
+        {
+            case MCFace.West:
+                GameObject newCell = Instantiate<GameObject>(cell, originCell.transform.position + new Vector3(-10, 0, 0), cell.transform.rotation, transform);
+                newCell.GetComponent<Cell>().posInGrid = underCellScript.posInGrid + new Vector3(-1, 0, 0);
+                //newCell.GetComponent<Cell>().x = un
+                grid[(int)(underCellScript.posInGrid.x - 1) * width + (int)underCellScript.posInGrid.z, (int)underCellScript.posInGrid.y] = newCell;
+                return newCell;
+            case MCFace.East:
+                GameObject newCell2 = Instantiate<GameObject>(cell, originCell.transform.position + new Vector3(10, 0, 0), cell.transform.rotation, transform);
+                newCell2.GetComponent<Cell>().posInGrid = underCellScript.posInGrid + new Vector3(1, 0, 0);
+                //newCell.GetComponent<Cell>().x = un
+                grid[(int)(underCellScript.posInGrid.x + 1) * width + (int)underCellScript.posInGrid.z, (int)underCellScript.posInGrid.y] = newCell2;
+                return newCell2;
+            case MCFace.South:
+                GameObject newCell3 = Instantiate<GameObject>(cell, originCell.transform.position + new Vector3(0, 0, -10), cell.transform.rotation, transform);
+                newCell3.GetComponent<Cell>().posInGrid = underCellScript.posInGrid + new Vector3(0, 0, 1);
+                //newCell.GetComponent<Cell>().x = un
+                grid[(int)underCellScript.posInGrid.x * width + (int)underCellScript.posInGrid.z+1, (int)underCellScript.posInGrid.y] = newCell3;
+                return newCell3;
+            case MCFace.North:
+                GameObject newCell4 = Instantiate<GameObject>(cell, originCell.transform.position + new Vector3(0, 0, 10), cell.transform.rotation, transform);
+                newCell4.GetComponent<Cell>().posInGrid = underCellScript.posInGrid + new Vector3(0, 0, -1);
+                //newCell.GetComponent<Cell>().x = un
+                grid[(int)underCellScript.posInGrid.x * width + (int)underCellScript.posInGrid.z-1, (int)underCellScript.posInGrid.y] = newCell4;
+                return newCell4;
+            default:
+                return null;
+        }
+    }
+
     public void DeleteCell(Cell cell)
     {
         grid[(int)cell.posInGrid.x * width + (int)cell.posInGrid.z, (int)cell.posInGrid.y] = null;
@@ -106,9 +172,15 @@ public class Grid : MonoBehaviour
         Destroy(cell.gameObject);
     }
 
-    
-
-    //public GameObject
-
+    public enum MCFace
+    {
+        None,
+        Up,
+        Down,
+        East,
+        West,
+        North,
+        South
+    }
 
 }

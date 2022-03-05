@@ -14,7 +14,7 @@ public class Cell : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        mc = GetComponent<MeshRenderer>();
+        //mc = GetComponent<MeshRenderer>();
     }
 
     // Update is called once per frame
