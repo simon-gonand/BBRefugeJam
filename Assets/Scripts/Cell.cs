@@ -8,8 +8,6 @@ public class Cell : MonoBehaviour
     public Vector3 posInGrid;
     public GameObject bloc;
 
-    public uint x, y, height;
-
     //component
     public MeshRenderer mc;
 
