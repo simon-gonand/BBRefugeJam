@@ -13,11 +13,14 @@ public class WarningMessage : MonoBehaviour
     private void Awake()
     {
         instance = this;
+
     }
 
     public void Warning(string text, float duration)
     {
         StopAllCoroutines();
+        message.text = "";
+        message.enabled = false;
         StartCoroutine(PopMessage(text, duration));
     }
 
