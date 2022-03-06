@@ -54,42 +54,42 @@ public class Player : MonoBehaviour
         underabove.AddRange(under);
         underabove.AddRange(above);
 
+        foreach(GameObject go in all)
+        {
+            BaseBlock neighbour = go.GetComponent<BaseBlock>();
+            switch (neighbour.globalRestrictions)
+            {
+                case Direction.All:
+                    return false;
+                case Direction.UnderAndAbove:
+                    foreach (GameObject obj in underabove)
+                    {
+                        if (obj.GetComponent<BaseBlock>().data.blockName == neighbour.data.blockName) return false;
+                    }
+                    break;
+                case Direction.Adjacents:
+                    foreach (GameObject obj in adjacents)
+                    {
+                        if (obj.GetComponent<BaseBlock>().data.blockName == neighbour.data.blockName) return false;
+                    }
+                    break;
+                case Direction.Above:
+                    foreach (GameObject obj in under)
+                    {
+                        if (obj.GetComponent<BaseBlock>().data.blockName == neighbour.data.blockName) return false;
+                    }
+                    break;
+                case Direction.Under:
+                    foreach (GameObject obj in above)
+                    {
+                        if (obj.GetComponent<BaseBlock>().data.blockName == neighbour.data.blockName) return false;
+                    }
+                    break;
+            }
+        }
+
         if (currentBlock.modifiers.Count > 0 && currentlyHoveredCell != null)
         {
-            foreach(GameObject go in all)
-            {
-                BaseBlock neighbour = go.GetComponent<BaseBlock>();
-                switch (neighbour.globalRestrictions)
-                {
-                    case Direction.All:
-                        return false;
-                    case Direction.UnderAndAbove:
-                        foreach (GameObject obj in underabove)
-                        {
-                            if (obj.GetComponent<BaseBlock>().data.blockName == neighbour.data.blockName) return false;
-                        }
-                        break;
-                    case Direction.Adjacents:
-                        foreach (GameObject obj in adjacents)
-                        {
-                            if (obj.GetComponent<BaseBlock>().data.blockName == neighbour.data.blockName) return false;
-                        }
-                        break;
-                    case Direction.Above:
-                        Debug.Log("yes");
-                        foreach (GameObject obj in under)
-                        {
-                            if (obj.GetComponent<BaseBlock>().data.blockName == neighbour.data.blockName) return false;
-                        }
-                        break;
-                    case Direction.Under:
-                        foreach (GameObject obj in above)
-                        {
-                            if (obj.GetComponent<BaseBlock>().data.blockName == neighbour.data.blockName) return false;
-                        }
-                        break;
-                }
-            }
 
             switch(currentBlock.globalRestrictions)
             {

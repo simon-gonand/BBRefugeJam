@@ -92,7 +92,15 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   globalRestrictions: 5
-  modifiers: []
+  modifiers:
+  - block: {fileID: 7212543627645896447}
+    restrictPlacement: 1
+    restrictions: 2
+    modifier:
+      hp: 0
+      resistance: 0
+      beauty: 0
+      resources: []
 --- !u!1 &7692649754269990275
 GameObject:
   m_ObjectHideFlags: 0

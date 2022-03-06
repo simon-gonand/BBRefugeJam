@@ -59,9 +59,8 @@ public class Cell : MonoBehaviour
             BlocSelector.Instance.previewTmp.GetComponent<Bloc>().isPreview = true;
             BlocSelector.Instance.previewTmp.GetComponent<Bloc>().bottomCell = this;
             BlocSelector.Instance.previewTmp.GetComponent<Bloc>().bc.enabled = false;
-            BlocSelector.Instance.previewTmp.GetComponentInChildren<MeshRenderer>().material = BlocSelector.Instance.previewMaterial;
             BlocSelector.Instance.previewTmp.GetComponent<Bloc>().topCell = Grid.Instance.GetCell(posInGrid.x, posInGrid.y + 1, posInGrid.z).GetComponent<Cell>(); ;
-            //BlocSelector.Instance.previewTmp.GetComponent<MeshRenderer>().material = BlocSelector.Instance.previewMaterial;
+            //BlocSelector.Instance.previewTmp.GetComponentInChildren<MeshRenderer>().material = BlocSelector.Instance.previewMaterial;
             BlocSelector.Instance.previewTmp.transform.localPosition = this.transform.localPosition + (Vector3.up * (BlocSelector.Instance.currentBloc.transform.localScale.y / 2));
         }
 
