@@ -137,9 +137,9 @@ public class Grid : MonoBehaviour
                 {
                     if (grid[i, z, j] != null)
                     {
-                        BaseBlock block = grid[i, z, j].GetComponent<Cell>()?.bloc?.GetComponent<BaseBlock>();
+                        GameObject block = grid[i, z, j].GetComponent<Cell>()?.bloc;
                         if (block != null)
-                            blocks.Add(block);
+                            blocks.Add(block.GetComponent<BaseBlock>());
                     }
                 }
             }
