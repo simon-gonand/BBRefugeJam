@@ -35,14 +35,14 @@ public class Player : MonoBehaviour
         money -= amount;
     }
 
+        public List<GameObject> all = new List<GameObject>();
+        public List<GameObject> underabove = new List<GameObject>();
     public bool PlacementAllowed()
     {
 
         List<GameObject> adjacents = Grid.Instance.GetAdjacentCells(currentlyHoveredCell.posInGrid.x, currentlyHoveredCell.posInGrid.y, currentlyHoveredCell.posInGrid.z);
         List<GameObject> above = Grid.Instance.GetAboveCells(currentlyHoveredCell.posInGrid.x, currentlyHoveredCell.posInGrid.y, currentlyHoveredCell.posInGrid.z);
         List<GameObject> under = Grid.Instance.GetUnderCells(currentlyHoveredCell.posInGrid.x, currentlyHoveredCell.posInGrid.y, currentlyHoveredCell.posInGrid.z);
-        List<GameObject> all = new List<GameObject>();
-        List<GameObject> underabove = new List<GameObject>();
 
         all.AddRange(adjacents);
         all.AddRange(above);
