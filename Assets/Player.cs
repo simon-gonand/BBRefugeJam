@@ -39,7 +39,10 @@ public class Player : MonoBehaviour
         public List<GameObject> underabove = new List<GameObject>();
     public bool PlacementAllowed()
     {
+        Debug.Log("Hello");
 
+        all.Clear();
+        underabove.Clear();
         List<GameObject> adjacents = Grid.Instance.GetAdjacentCells(currentlyHoveredCell.posInGrid.x, currentlyHoveredCell.posInGrid.y, currentlyHoveredCell.posInGrid.z);
         List<GameObject> above = Grid.Instance.GetAboveCells(currentlyHoveredCell.posInGrid.x, currentlyHoveredCell.posInGrid.y, currentlyHoveredCell.posInGrid.z);
         List<GameObject> under = Grid.Instance.GetUnderCells(currentlyHoveredCell.posInGrid.x, currentlyHoveredCell.posInGrid.y, currentlyHoveredCell.posInGrid.z);

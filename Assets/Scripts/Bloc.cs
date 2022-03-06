@@ -62,7 +62,7 @@ public class Bloc : MonoBehaviour
                         Cell cellScript = Grid.Instance.GetCell(bottomCell.posInGrid.x, bottomCell.posInGrid.y, bottomCell.posInGrid.z - 1).GetComponent<Cell>();
                         if (cellScript.bloc == null)
                         {
-                            cellScript.AddBlocOnCell();
+                            if(Player.instance.PlacementAllowed()) cellScript.AddBlocOnCell();
                         }
                         break;
                     case MCFace.East:
@@ -70,7 +70,7 @@ public class Bloc : MonoBehaviour
                         Cell cellScript2 = Grid.Instance.GetCell(bottomCell.posInGrid.x, bottomCell.posInGrid.y, bottomCell.posInGrid.z + 1).GetComponent<Cell>();
                         if (cellScript2.bloc == null)
                         {
-                            cellScript2.AddBlocOnCell();
+                            if (Player.instance.PlacementAllowed()) cellScript2.AddBlocOnCell();
                         }
 
                         break;
@@ -79,7 +79,7 @@ public class Bloc : MonoBehaviour
                         Cell cellScript3 = Grid.Instance.GetCell(bottomCell.posInGrid.x + 1, bottomCell.posInGrid.y, bottomCell.posInGrid.z).GetComponent<Cell>();
                         if (cellScript3.bloc == null)
                         {
-                            cellScript3.AddBlocOnCell();
+                            if (Player.instance.PlacementAllowed()) cellScript3.AddBlocOnCell();
                         }
                         break;
                     case MCFace.North:
@@ -87,7 +87,7 @@ public class Bloc : MonoBehaviour
                         Cell cellScript4 = Grid.Instance.GetCell(bottomCell.posInGrid.x - 1, bottomCell.posInGrid.y, bottomCell.posInGrid.z).GetComponent<Cell>();
                         if (cellScript4.bloc == null)
                         {
-                            cellScript4.AddBlocOnCell();
+                            if (Player.instance.PlacementAllowed()) cellScript4.AddBlocOnCell();
                         }
                         break;
                     default:

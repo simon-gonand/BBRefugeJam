@@ -129,6 +129,7 @@ public class Grid : MonoBehaviour
     {
         //get inexistant cell
         List<GameObject> result = new List<GameObject>();
+        List<GameObject> temp = new List<GameObject>();
 
         if (x < 0 || x >= width || z < 0 || z >= lenght || y >= heightMax) return result;
 
@@ -141,13 +142,15 @@ public class Grid : MonoBehaviour
             if(z < lenght-1) result.Add(GetCell(x, y, z + i).GetComponent<Cell>()?.bloc);
         }
 
-        for (int i = 0; i < result.Count; i++)
+
+
+        foreach (GameObject go in result)
         {
-            if (result[i] == null) result.RemoveAt(i);
+            if (go != null) temp.Add(go);
         }
 
 
-        return result;
+        return temp;
     }
 
     //Ne prend que des cellules pleines /!\
@@ -155,6 +158,7 @@ public class Grid : MonoBehaviour
     {
         //get inexistant cell
         List<GameObject> result = new List<GameObject>();
+        List<GameObject> temp = new List<GameObject>();
 
         if (x < 0 || x >= width || z < 0 || z >= lenght || y >= heightMax || y < 0) return result;
 
@@ -164,13 +168,13 @@ public class Grid : MonoBehaviour
             result.Add(GetCell(x, y + i, z).GetComponent<Cell>()?.bloc);
         }
 
-        for (int i = 0; i < result.Count; i++)
+        foreach (GameObject go in result)
         {
-            if (result[i] == null) result.RemoveAt(i);
+            if (go != null) temp.Add(go);
         }
 
 
-        return result;
+        return temp;
     }
 
     //Ne prend que des cellules pleines /!\
@@ -178,6 +182,7 @@ public class Grid : MonoBehaviour
     {
         //get inexistant cell
         List<GameObject> result = new List<GameObject>();
+        List<GameObject> temp = new List<GameObject>();
 
         if (x < 0 || x >= width || z < 0 || z >= lenght || y > heightMax || y <= 0) return result;
 
@@ -187,13 +192,13 @@ public class Grid : MonoBehaviour
             result.Add(GetCell(x, y - i, z).GetComponent<Cell>()?.bloc);
         }
 
-        for (int i = 0; i < result.Count; i++)
+        foreach (GameObject go in result)
         {
-            if (result[i] == null) result.RemoveAt(i);
+            if (go != null) temp.Add(go);
         }
 
 
-        return result;
+        return temp;
     }
 
     public GameObject GetHighestCell(uint x, uint y)
