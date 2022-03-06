@@ -232,6 +232,7 @@ public class Bloc : MonoBehaviour
         }
         //Grid.Instance.DeleteCell(topCell);
         //if (bottomCell.bloc != null) bottomCell.mc.enabled = true;
+        Instantiate(GameManager.instance.removeBlock, transform.position, Quaternion.identity);
         DestroyImmediate(this.gameObject);
     }
 
