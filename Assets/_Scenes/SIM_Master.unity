@@ -212,7 +212,7 @@ GameObject:
   - component: {fileID: 85222905}
   - component: {fileID: 85222904}
   m_Layer: 5
-  m_Name: CalculateScore
+  m_Name: LaunchApocalypse
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -282,9 +282,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2097309823}
-        m_TargetAssemblyTypeName: ScoreManager, Assembly-CSharp
-        m_MethodName: CalculateScore
+      - m_Target: {fileID: 564918702}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: LaunchApocalypse
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2184,8 +2184,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80340d94d4a0ab445864694b66bc7c45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  meteorites: {fileID: 146426270}
-  launchApoButton: {fileID: 0}
+  meteorites:
+  - {fileID: 146426270}
+  launchApoButton: {fileID: 85222904}
   allAvailableBlocks:
   - {fileID: 7212543627645896447, guid: 892be84844792194c84aee357f8d8597, type: 3}
   - {fileID: 7212543627645896447, guid: f280f578cc0d65a458aa753be02da19b, type: 3}
@@ -4079,7 +4080,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Calculate Score
+  m_text: Launch Apocalypse
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4106,8 +4107,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30
-  m_fontSizeBase: 30
+  m_fontSize: 27
+  m_fontSizeBase: 27
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
