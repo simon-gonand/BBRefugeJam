@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: M_TestBlue 1
-  m_Shader: {fileID: 4800000, guid: b9e7139d0f28f08488555b6943e9e867, type: 3}
+  m_Name: M_Grid
+  m_Shader: {fileID: 4800000, guid: fbee92b062256c844a06a8d746f1eed8, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -20,17 +20,19 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _MainTex:
-        m_Texture: {fileID: 10309, guid: 0000000000000000f000000000000000, type: 0}
-        m_Scale: {x: 400, y: 350}
+        m_Texture: {fileID: 2800000, guid: 814025b40572ccf4bafca7fa2be28fff, type: 3}
+        m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
     - _FresnelMax: 1
     - _FresnelMin: 0
+    - _OnlyVCol: 0
     - _SpecIntensity: 0
     - _SpecSize: 0.9
+    - _SpecSmooth: 0
     m_Colors:
     - _Color: {r: 0.26415092, g: 0.26415092, b: 0.26415092, a: 1}
-    - _ColorR: {r: 1, g: 1, b: 1, a: 1}
+    - _ColorR: {r: 0.3018868, g: 0.3018868, b: 0.3018868, a: 1}
     - _FresnelCol: {r: 1, g: 1, b: 1, a: 0}
   m_BuildTextureStacks: []
