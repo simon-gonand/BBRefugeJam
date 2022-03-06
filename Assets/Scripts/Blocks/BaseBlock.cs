@@ -78,7 +78,7 @@ public class ProximityModifier
 {
     public BaseBlock block;
     public bool restrictPlacement;
-    public Direction directions;
+    public Direction restrictions;
     public ModifierData modifier;
 }
 

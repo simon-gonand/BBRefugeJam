@@ -116,36 +116,89 @@ public class Grid : MonoBehaviour
     public GameObject GetCell(float x, float y, float z)
     {
         //get inexistant cell
-        if (x < 0 || x >= width || z < 0 || z >= lenght || y >= heightMax) return null;
+        if (x < 0 || x >= width || z < 0 || z >= lenght || y >= heightMax || y < 0) return null;
 
-        Debug.Log("X: " + x + ", Y: " + y + ", Z: " + z);
+        //Debug.Log("X: " + x + ", Y: " + y + ", Z: " + z);
         grid[(int)x, (int)y, (int)z].SetActive(true);
 
         return grid[(int)x, (int)y, (int)z];
     }
 
+    //Ne prend que des cellules pleines /!\
     public List<GameObject> GetAdjacentCells(float x, float y, float z, int depth = 1)
     {
-
+        //get inexistant cell
         List<GameObject> result = new List<GameObject>();
+        List<GameObject> temp = new List<GameObject>();
+
+        if (x < 0 || x >= width || z < 0 || z >= lenght || y >= heightMax) return result;
+
 
         for (int i = 1; i <= depth; i++)
         {
-            result.Add(GetCell(x - i, y, z));
-            result.Add(GetCell(x + i, y, z));
-            result.Add(GetCell(x, y, z - i));
-            result.Add(GetCell(x, y, z + i));
+            if(x > 0) result.Add(GetCell(x - i, y, z).GetComponent<Cell>()?.bloc);
+            if(x < width-1) result.Add(GetCell(x + i, y, z).GetComponent<Cell>()?.bloc);
+            if(z > 0) result.Add(GetCell(x, y, z - i).GetComponent<Cell>()?.bloc);
+            if(z < lenght-1) result.Add(GetCell(x, y, z + i).GetComponent<Cell>()?.bloc);
         }
 
-        for (int i = 0; i < result.Count; i++)
+
+
+        foreach (GameObject go in result)
         {
-            if (result[i] == null) result.RemoveAt(i);
+            if (go != null) temp.Add(go);
         }
 
-        //get inexistant cell
-        if (x < 0 || x >= width || z < 0 || z >= lenght || y >= heightMax) return null;
 
-        return result;
+        return temp;
+    }
+
+    //Ne prend que des cellules pleines /!\
+    public List<GameObject> GetAboveCells(float x, float y, float z, int depth = 1)
+    {
+        //get inexistant cell
+        List<GameObject> result = new List<GameObject>();
+        List<GameObject> temp = new List<GameObject>();
+
+        if (x < 0 || x >= width || z < 0 || z >= lenght || y >= heightMax || y < 0) return result;
+
+
+        for (int i = 1; i <= depth; i++)
+        {
+            result.Add(GetCell(x, y + i, z).GetComponent<Cell>()?.bloc);
+        }
+
+        foreach (GameObject go in result)
+        {
+            if (go != null) temp.Add(go);
+        }
+
+
+        return temp;
+    }
+
+    //Ne prend que des cellules pleines /!\
+    public List<GameObject> GetUnderCells(float x, float y, float z, int depth = 1)
+    {
+        //get inexistant cell
+        List<GameObject> result = new List<GameObject>();
+        List<GameObject> temp = new List<GameObject>();
+
+        if (x < 0 || x >= width || z < 0 || z >= lenght || y > heightMax || y <= 0) return result;
+
+
+        for (int i = 1; i <= depth; i++)
+        {
+            result.Add(GetCell(x, y - i, z).GetComponent<Cell>()?.bloc);
+        }
+
+        foreach (GameObject go in result)
+        {
+            if (go != null) temp.Add(go);
+        }
+
+
+        return temp;
     }
 
     public GameObject GetHighestCell(uint x, uint y)

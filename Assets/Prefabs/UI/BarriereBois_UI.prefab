@@ -65,9 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'BLOCK
-
-'
+  m_text: BLOCK
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 07e3f9cc683afaa43844763ea44d32af, type: 2}
   m_sharedMaterial: {fileID: -2125366531669749890, guid: 07e3f9cc683afaa43844763ea44d32af, type: 2}
@@ -94,8 +92,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 20
+  m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
