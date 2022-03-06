@@ -20,6 +20,8 @@ public class Grid : MonoBehaviour
 
     public GroundRotation gr;
 
+    public GameObject selectionFrame;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -98,7 +100,6 @@ public class Grid : MonoBehaviour
                     if (z > 0)
                     {
                         newCell.GetComponent<Cell>().bc.enabled = false;
-                        newCell.GetComponent<Cell>().mc.enabled = false;
                         //newCell.SetActive(false);
                     }
                     grid[i , z, j] = newCell;

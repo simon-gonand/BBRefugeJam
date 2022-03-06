@@ -129,6 +129,9 @@ public class Bloc : MonoBehaviour
                         BlocSelector.Instance.previewTmp = Instantiate<GameObject>(BlocSelector.Instance.currentBloc, new Vector3(pos.x, pos.y + BlocSelector.Instance.currentBloc.transform.localScale.y / 2, pos.z), Grid.Instance.gr.transform.rotation * Quaternion.Euler(0, 90 * BlocSelector.Instance.nbOfRotation, 0), Grid.Instance.transform);
                         BlocSelector.Instance.previewTmp.transform.localPosition = adjacentCell.transform.localPosition + (Vector3.up * (BlocSelector.Instance.currentBloc.transform.localScale.y / 2));
 
+                        Grid.Instance.selectionFrame.transform.position = new Vector3(pos.x, pos.y + BlocSelector.Instance.currentBloc.transform.localScale.y / 2, pos.z);
+                        Grid.Instance.selectionFrame.transform.rotation = Grid.Instance.gr.transform.rotation * Quaternion.Euler(0, 90 * BlocSelector.Instance.nbOfRotation, 0);
+
                         BlocSelector.Instance.previewTmp.GetComponent<Bloc>().isPreview = true;
                         BlocSelector.Instance.previewTmp.GetComponent<Bloc>().bottomCell = adjacentCell;
                         BlocSelector.Instance.previewTmp.GetComponent<Bloc>().bc.enabled = false;
@@ -144,6 +147,10 @@ public class Bloc : MonoBehaviour
                         Vector3 pos2 = adjacentCell2.transform.position;
                         BlocSelector.Instance.previewTmp = Instantiate<GameObject>(BlocSelector.Instance.currentBloc, new Vector3(pos2.x, pos2.y + BlocSelector.Instance.currentBloc.transform.localScale.y / 2, pos2.z), Grid.Instance.gr.transform.rotation * Quaternion.Euler(0, 90 * BlocSelector.Instance.nbOfRotation, 0), Grid.Instance.transform);
                         BlocSelector.Instance.previewTmp.transform.localPosition = adjacentCell2.transform.localPosition + (Vector3.up * (BlocSelector.Instance.currentBloc.transform.localScale.y / 2));
+
+                        Grid.Instance.selectionFrame.transform.position = new Vector3(pos2.x, pos2.y + BlocSelector.Instance.currentBloc.transform.localScale.y / 2, pos2.z);
+                        Grid.Instance.selectionFrame.transform.rotation = Grid.Instance.gr.transform.rotation * Quaternion.Euler(0, 90 * BlocSelector.Instance.nbOfRotation, 0);
+
                         BlocSelector.Instance.previewTmp.GetComponent<Bloc>().isPreview = true;
                         BlocSelector.Instance.previewTmp.GetComponent<Bloc>().bottomCell = adjacentCell2;
                         BlocSelector.Instance.previewTmp.GetComponent<Bloc>().bc.enabled = false;
@@ -157,6 +164,9 @@ public class Bloc : MonoBehaviour
                         Vector3 pos3 = adjacentCell3.transform.position;
                         BlocSelector.Instance.previewTmp = Instantiate<GameObject>(BlocSelector.Instance.currentBloc, new Vector3(pos3.x, pos3.y + BlocSelector.Instance.currentBloc.transform.localScale.y / 2, pos3.z), Grid.Instance.gr.transform.rotation * Quaternion.Euler(0, 90 * BlocSelector.Instance.nbOfRotation, 0), Grid.Instance.transform);
                         BlocSelector.Instance.previewTmp.transform.localPosition = adjacentCell3.transform.localPosition + (Vector3.up * (BlocSelector.Instance.currentBloc.transform.localScale.y / 2));
+
+                        Grid.Instance.selectionFrame.transform.position = new Vector3(pos3.x, pos3.y + BlocSelector.Instance.currentBloc.transform.localScale.y / 2, pos3.z);
+                        Grid.Instance.selectionFrame.transform.rotation = Grid.Instance.gr.transform.rotation * Quaternion.Euler(0, 90 * BlocSelector.Instance.nbOfRotation, 0);
 
                         BlocSelector.Instance.previewTmp.GetComponent<Bloc>().isPreview = true;
                         BlocSelector.Instance.previewTmp.GetComponent<Bloc>().bottomCell = adjacentCell3;
@@ -172,6 +182,9 @@ public class Bloc : MonoBehaviour
                         Vector3 pos4 = adjacentCell4.transform.position;
                         BlocSelector.Instance.previewTmp = Instantiate<GameObject>(BlocSelector.Instance.currentBloc, new Vector3(pos4.x, pos4.y + BlocSelector.Instance.currentBloc.transform.localScale.y / 2, pos4.z), Grid.Instance.gr.transform.rotation * Quaternion.Euler(0, 90 * BlocSelector.Instance.nbOfRotation, 0), Grid.Instance.transform);
                         BlocSelector.Instance.previewTmp.transform.localPosition = adjacentCell4.transform.localPosition + (Vector3.up * (BlocSelector.Instance.currentBloc.transform.localScale.y / 2));
+
+                        Grid.Instance.selectionFrame.transform.position = new Vector3(pos4.x, pos4.y + BlocSelector.Instance.currentBloc.transform.localScale.y / 2, pos4.z);
+                        Grid.Instance.selectionFrame.transform.rotation = Grid.Instance.gr.transform.rotation * Quaternion.Euler(0, 90 * BlocSelector.Instance.nbOfRotation, 0);
 
                         BlocSelector.Instance.previewTmp.GetComponent<Bloc>().isPreview = true;
                         BlocSelector.Instance.previewTmp.GetComponent<Bloc>().bottomCell = adjacentCell4;
@@ -198,15 +211,12 @@ public class Bloc : MonoBehaviour
         Player.instance.AddMoney(this.GetComponent<BaseBlock>().data.price);
 
         topCell.gameObject.GetComponent<BoxCollider>().enabled = false;
-        topCell.gameObject.GetComponent<MeshRenderer>().enabled = false;
         if (bottomCell.posInGrid.y == 0)
         {
-            bottomCell.mc.enabled = true;
             bottomCell.bc.enabled = true;
         }
         if(bottomCell.posInGrid.y - 1 >=0 && Grid.Instance.GetCell(bottomCell.posInGrid.x, bottomCell.posInGrid.y - 1, bottomCell.posInGrid.z).GetComponent<Cell>().GetBloc() != null)
         {
-            Grid.Instance.GetCell(bottomCell.posInGrid.x, bottomCell.posInGrid.y - 1, bottomCell.posInGrid.z).GetComponent<Cell>().GetBloc().GetComponent<Bloc>().topCell.mc.enabled = true;
             Grid.Instance.GetCell(bottomCell.posInGrid.x, bottomCell.posInGrid.y - 1, bottomCell.posInGrid.z).GetComponent<Cell>().GetBloc().GetComponent<Bloc>().topCell.bc.enabled = true;
         }
         //Grid.Instance.DeleteCell(topCell);
