@@ -20,8 +20,8 @@ public class CameraZoom : MonoBehaviour
     private void Start()
     {
         self.position *= Grid.Instance.width / 10;
-        _startPos = self.position;
-        startZ = self.position.z;
+        _startPos = self.position - (self.forward * 10.0f);
+        startZ = _startPos.z;
     }
 
     // Update is called once per frame

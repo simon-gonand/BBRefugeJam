@@ -56,10 +56,6 @@ PrefabInstance:
       value: PS_PlaceBlock
       objectReference: {fileID: 0}
     - target: {fileID: 8253867325541979524, guid: 992d825865129004d8f80304f5697bb5, type: 3}
-      propertyPath: stopAction
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8253867325541979524, guid: 992d825865129004d8f80304f5697bb5, type: 3}
       propertyPath: ShapeModule.type
       value: 10
       objectReference: {fileID: 0}
