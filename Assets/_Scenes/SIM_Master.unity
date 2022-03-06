@@ -467,7 +467,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   self: {fileID: 146426269}
   prefab: {fileID: 9188207491754144465, guid: 9bdd58a0883ff8f43b2caed17641c5af, type: 3}
-  meteoritesPercentage: 0.8
+  meteoritesPercentage: 0.3
 --- !u!1 &148266341
 GameObject:
   m_ObjectHideFlags: 0
@@ -2186,6 +2186,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   meteorites:
   - {fileID: 146426270}
+  - {fileID: 767191903}
+  - {fileID: 936318981}
   launchApoButton: {fileID: 85222904}
   allAvailableBlocks:
   - {fileID: 7212543627645896447, guid: 892be84844792194c84aee357f8d8597, type: 3}
@@ -2339,6 +2341,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 759478287}
   m_CullTransparentMesh: 1
+--- !u!1 &767191901
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 767191902}
+  - component: {fileID: 767191903}
+  m_Layer: 0
+  m_Name: MeteoritePool (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &767191902
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 767191901}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -6.82, y: 10.5, z: -1.92}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1968671780}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &767191903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 767191901}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43144b473ebee8e43a7ea6d6d7e78aea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  self: {fileID: 767191902}
+  prefab: {fileID: 9188207491754144465, guid: 9bdd58a0883ff8f43b2caed17641c5af, type: 3}
+  meteoritesPercentage: 0.3
 --- !u!1 &773544252
 GameObject:
   m_ObjectHideFlags: 0
@@ -3392,6 +3440,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 929234179}
   m_CullTransparentMesh: 1
+--- !u!1 &936318979
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 936318980}
+  - component: {fileID: 936318981}
+  m_Layer: 0
+  m_Name: MeteoritePool (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &936318980
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 936318979}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -3.05, y: 10.5, z: 5.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1968671780}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &936318981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 936318979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43144b473ebee8e43a7ea6d6d7e78aea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  self: {fileID: 936318980}
+  prefab: {fileID: 9188207491754144465, guid: 9bdd58a0883ff8f43b2caed17641c5af, type: 3}
+  meteoritesPercentage: 0.3
 --- !u!1 &954954940
 GameObject:
   m_ObjectHideFlags: 0
@@ -7909,6 +8003,8 @@ Transform:
   - {fileID: 1359874840}
   - {fileID: 146426269}
   - {fileID: 189912054}
+  - {fileID: 767191902}
+  - {fileID: 936318980}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
