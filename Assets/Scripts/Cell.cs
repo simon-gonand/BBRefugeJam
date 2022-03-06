@@ -43,10 +43,10 @@ public class Cell : MonoBehaviour
 
             //adjacent = Grid.Instance.GetAdjacentCells(posInGrid.x, posInGrid.y, posInGrid.z);
 
-            if(Player.instance.PlacementAllowed())
-            {
+            //if(Player.instance.PlacementAllowed())
+            //{
                 AddBlocOnCell();
-            }
+            //}
 
             //Debug.Log(posInGrid);
         }
@@ -61,7 +61,7 @@ public class Cell : MonoBehaviour
             BlocSelector.Instance.previewTmp.GetComponent<Bloc>().bc.enabled = false;
             BlocSelector.Instance.previewTmp.GetComponentInChildren<MeshRenderer>().material = BlocSelector.Instance.previewMaterial;
             BlocSelector.Instance.previewTmp.GetComponent<Bloc>().topCell = Grid.Instance.GetCell(posInGrid.x, posInGrid.y + 1, posInGrid.z).GetComponent<Cell>(); ;
-            BlocSelector.Instance.previewTmp.GetComponent<MeshRenderer>().material = BlocSelector.Instance.previewMaterial;
+            //BlocSelector.Instance.previewTmp.GetComponent<MeshRenderer>().material = BlocSelector.Instance.previewMaterial;
             BlocSelector.Instance.previewTmp.transform.localPosition = this.transform.localPosition + (Vector3.up * (BlocSelector.Instance.currentBloc.transform.localScale.y / 2));
         }
 

@@ -62,7 +62,8 @@ public class Bloc : MonoBehaviour
                         Cell cellScript = Grid.Instance.GetCell(bottomCell.posInGrid.x, bottomCell.posInGrid.y, bottomCell.posInGrid.z - 1).GetComponent<Cell>();
                         if (cellScript.bloc == null)
                         {
-                            if(Player.instance.PlacementAllowed()) cellScript.AddBlocOnCell();
+                            Player.instance.currentlyHoveredCell = cellScript;
+                            if (Player.instance.PlacementAllowed()) cellScript.AddBlocOnCell();
                         }
                         break;
                     case MCFace.East:
@@ -70,7 +71,9 @@ public class Bloc : MonoBehaviour
                         Cell cellScript2 = Grid.Instance.GetCell(bottomCell.posInGrid.x, bottomCell.posInGrid.y, bottomCell.posInGrid.z + 1).GetComponent<Cell>();
                         if (cellScript2.bloc == null)
                         {
+                            Player.instance.currentlyHoveredCell = cellScript2;
                             if (Player.instance.PlacementAllowed()) cellScript2.AddBlocOnCell();
+
                         }
 
                         break;
@@ -79,6 +82,7 @@ public class Bloc : MonoBehaviour
                         Cell cellScript3 = Grid.Instance.GetCell(bottomCell.posInGrid.x + 1, bottomCell.posInGrid.y, bottomCell.posInGrid.z).GetComponent<Cell>();
                         if (cellScript3.bloc == null)
                         {
+                            Player.instance.currentlyHoveredCell = cellScript3;
                             if (Player.instance.PlacementAllowed()) cellScript3.AddBlocOnCell();
                         }
                         break;
@@ -87,6 +91,7 @@ public class Bloc : MonoBehaviour
                         Cell cellScript4 = Grid.Instance.GetCell(bottomCell.posInGrid.x - 1, bottomCell.posInGrid.y, bottomCell.posInGrid.z).GetComponent<Cell>();
                         if (cellScript4.bloc == null)
                         {
+                            Player.instance.currentlyHoveredCell = cellScript4;
                             if (Player.instance.PlacementAllowed()) cellScript4.AddBlocOnCell();
                         }
                         break;
@@ -106,6 +111,77 @@ public class Bloc : MonoBehaviour
         {
             bottomCell.AddBlocOnCell();
             Destroy(this);
+        }
+        else
+        {
+            cam = Camera.main;
+            RaycastHit hit;
+
+            // Draw ray from mouse position to check if we hit anything with certain layer 
+            if (Physics.Raycast(cam.ScreenPointToRay(Input.mousePosition), out hit, 1000))
+            {
+                switch (GetHitFace(hit))
+                {
+                    case MCFace.West:
+                        if (BlocSelector.Instance.previewTmp != null) Destroy(BlocSelector.Instance.previewTmp);
+
+                        Cell adjacentCell = Grid.Instance.GetCell(bottomCell.posInGrid.x, bottomCell.posInGrid.y, bottomCell.posInGrid.z - 1).GetComponent<Cell>();
+                        Vector3 pos = adjacentCell.transform.position;
+                        BlocSelector.Instance.previewTmp = Instantiate<GameObject>(BlocSelector.Instance.currentBloc, new Vector3(pos.x, pos.y + BlocSelector.Instance.currentBloc.transform.localScale.y / 2, pos.z), Grid.Instance.gr.transform.rotation * Quaternion.Euler(0, 90 * BlocSelector.Instance.nbOfRotation, 0), Grid.Instance.transform);
+                        BlocSelector.Instance.previewTmp.transform.localPosition = adjacentCell.transform.localPosition + (Vector3.up * (BlocSelector.Instance.currentBloc.transform.localScale.y / 2));
+
+                        BlocSelector.Instance.previewTmp.GetComponent<Bloc>().isPreview = true;
+                        BlocSelector.Instance.previewTmp.GetComponent<Bloc>().bottomCell = adjacentCell;
+                        BlocSelector.Instance.previewTmp.GetComponent<Bloc>().bc.enabled = false;
+                        BlocSelector.Instance.previewTmp.GetComponentInChildren<MeshRenderer>().material = BlocSelector.Instance.previewMaterial;
+                        BlocSelector.Instance.previewTmp.GetComponent<Bloc>().topCell = Grid.Instance.GetCell(bottomCell.posInGrid.x, bottomCell.posInGrid.y + 1, bottomCell.posInGrid.z -1).GetComponent<Cell>();
+                        //BlocSelector.Instance.previewTmp.GetComponent<MeshRenderer>().material = BlocSelector.Instance.previewMaterial;
+                        //BlocSelector.Instance.previewTmp.transform.localPosition = this.transform.localPosition + (Vector3.up * (BlocSelector.Instance.currentBloc.transform.localScale.y / 2));
+                        break;
+                    case MCFace.East:
+                        if (BlocSelector.Instance.previewTmp != null) Destroy(BlocSelector.Instance.previewTmp);
+
+                        Cell adjacentCell2 = Grid.Instance.GetCell(bottomCell.posInGrid.x, bottomCell.posInGrid.y, bottomCell.posInGrid.z + 1).GetComponent<Cell>();
+                        Vector3 pos2 = adjacentCell2.transform.position;
+                        BlocSelector.Instance.previewTmp = Instantiate<GameObject>(BlocSelector.Instance.currentBloc, new Vector3(pos2.x, pos2.y + BlocSelector.Instance.currentBloc.transform.localScale.y / 2, pos2.z), Grid.Instance.gr.transform.rotation * Quaternion.Euler(0, 90 * BlocSelector.Instance.nbOfRotation, 0), Grid.Instance.transform);
+                        BlocSelector.Instance.previewTmp.transform.localPosition = adjacentCell2.transform.localPosition + (Vector3.up * (BlocSelector.Instance.currentBloc.transform.localScale.y / 2));
+                        BlocSelector.Instance.previewTmp.GetComponent<Bloc>().isPreview = true;
+                        BlocSelector.Instance.previewTmp.GetComponent<Bloc>().bottomCell = adjacentCell2;
+                        BlocSelector.Instance.previewTmp.GetComponent<Bloc>().bc.enabled = false;
+                        BlocSelector.Instance.previewTmp.GetComponentInChildren<MeshRenderer>().material = BlocSelector.Instance.previewMaterial;
+                        BlocSelector.Instance.previewTmp.GetComponent<Bloc>().topCell = Grid.Instance.GetCell(bottomCell.posInGrid.x, bottomCell.posInGrid.y + 1, bottomCell.posInGrid.z + 1).GetComponent<Cell>();
+                        break;
+                    case MCFace.North:
+                        if (BlocSelector.Instance.previewTmp != null) Destroy(BlocSelector.Instance.previewTmp);
+
+                        Cell adjacentCell3 = Grid.Instance.GetCell(bottomCell.posInGrid.x - 1, bottomCell.posInGrid.y, bottomCell.posInGrid.z).GetComponent<Cell>();
+                        Vector3 pos3 = adjacentCell3.transform.position;
+                        BlocSelector.Instance.previewTmp = Instantiate<GameObject>(BlocSelector.Instance.currentBloc, new Vector3(pos3.x, pos3.y + BlocSelector.Instance.currentBloc.transform.localScale.y / 2, pos3.z), Grid.Instance.gr.transform.rotation * Quaternion.Euler(0, 90 * BlocSelector.Instance.nbOfRotation, 0), Grid.Instance.transform);
+                        BlocSelector.Instance.previewTmp.transform.localPosition = adjacentCell3.transform.localPosition + (Vector3.up * (BlocSelector.Instance.currentBloc.transform.localScale.y / 2));
+
+                        BlocSelector.Instance.previewTmp.GetComponent<Bloc>().isPreview = true;
+                        BlocSelector.Instance.previewTmp.GetComponent<Bloc>().bottomCell = adjacentCell3;
+                        BlocSelector.Instance.previewTmp.GetComponent<Bloc>().bc.enabled = false;
+                        BlocSelector.Instance.previewTmp.GetComponentInChildren<MeshRenderer>().material = BlocSelector.Instance.previewMaterial;
+                        BlocSelector.Instance.previewTmp.GetComponent<Bloc>().topCell = Grid.Instance.GetCell(bottomCell.posInGrid.x - 1, bottomCell.posInGrid.y + 1, bottomCell.posInGrid.z).GetComponent<Cell>();
+                        break;
+                    case MCFace.South:
+                        if (BlocSelector.Instance.previewTmp != null) Destroy(BlocSelector.Instance.previewTmp);
+                        
+                        Cell adjacentCell4 = Grid.Instance.GetCell(bottomCell.posInGrid.x + 1, bottomCell.posInGrid.y, bottomCell.posInGrid.z).GetComponent<Cell>();
+                        //Player.instance.currentlyHoveredCell = adjacentCell4;
+                        Vector3 pos4 = adjacentCell4.transform.position;
+                        BlocSelector.Instance.previewTmp = Instantiate<GameObject>(BlocSelector.Instance.currentBloc, new Vector3(pos4.x, pos4.y + BlocSelector.Instance.currentBloc.transform.localScale.y / 2, pos4.z), Grid.Instance.gr.transform.rotation * Quaternion.Euler(0, 90 * BlocSelector.Instance.nbOfRotation, 0), Grid.Instance.transform);
+                        BlocSelector.Instance.previewTmp.transform.localPosition = adjacentCell4.transform.localPosition + (Vector3.up * (BlocSelector.Instance.currentBloc.transform.localScale.y / 2));
+
+                        BlocSelector.Instance.previewTmp.GetComponent<Bloc>().isPreview = true;
+                        BlocSelector.Instance.previewTmp.GetComponent<Bloc>().bottomCell = adjacentCell4;
+                        BlocSelector.Instance.previewTmp.GetComponent<Bloc>().bc.enabled = false;
+                        BlocSelector.Instance.previewTmp.GetComponentInChildren<MeshRenderer>().material = BlocSelector.Instance.previewMaterial;
+                        BlocSelector.Instance.previewTmp.GetComponent<Bloc>().topCell = Grid.Instance.GetCell(bottomCell.posInGrid.x + 1, bottomCell.posInGrid.y + 1, bottomCell.posInGrid.z).GetComponent<Cell>();
+                        break;
+                }
+            }
         }
 
 
@@ -163,7 +239,7 @@ public class Bloc : MonoBehaviour
         //Debug.Log(incomingVec);
         Vector3 relative;
         relative = transform.InverseTransformDirection(incomingVec);
-        Debug.Log(relative);
+        //Debug.Log(relative);
 
         relative = new Vector3(Mathf.Round(relative.x), Mathf.Round(relative.y), Mathf.Round(relative.z));
 
