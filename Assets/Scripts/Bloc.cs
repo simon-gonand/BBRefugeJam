@@ -54,6 +54,13 @@ public class Bloc : MonoBehaviour
             {
                 if (bottomCell == null) Debug.Log("ERROR : bottomCell is null");
 
+                if (!Player.instance.EnoughMoney(Player.instance.currentBlock.data.price))
+                {
+                    WarningMessage.instance.Warning("Not enough money !", 2f);
+                    return;
+                }
+
+
                 Debug.Log(GetHitFace(hit));
                 switch (GetHitFace(hit))
                 {
@@ -108,8 +115,12 @@ public class Bloc : MonoBehaviour
         }
         else if (Input.GetMouseButtonDown(0) && isPreview)
         {
-            if (Player.instance.PlacementAllowed()) bottomCell.AddBlocOnCell();
-            Destroy(this);
+
+            if (Player.instance.EnoughMoney(Player.instance.currentBlock.data.price))
+            {
+                if (Player.instance.PlacementAllowed()) bottomCell.AddBlocOnCell();
+                Destroy(this);
+            }
         }
         else
         {

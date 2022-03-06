@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blockName: Metal Roof
   thumbnail: {fileID: 21300000, guid: 9a9c9e2edeb1f7048b0236a691f17764, type: 3}
-  price: 275
-  hp: 125
-  resistance: 50
-  beauty: -5
+  price: 400
+  hp: 450
+  resistance: 75
+  beauty: 10
   resources: []

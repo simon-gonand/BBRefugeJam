@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blockName: Tile Roof
   thumbnail: {fileID: 21300000, guid: 19b41bc38bf2b20419ca758e67d04d66, type: 3}
-  price: 500
-  hp: 200
-  resistance: 85
-  beauty: 20
+  price: 400
+  hp: 450
+  resistance: 75
+  beauty: 10
   resources: []

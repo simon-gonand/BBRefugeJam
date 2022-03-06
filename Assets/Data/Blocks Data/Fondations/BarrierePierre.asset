@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blockName: Stone Fence
   thumbnail: {fileID: 21300000, guid: 817f9ed3ad089f2419c059de4c7fd104, type: 3}
-  price: 450
-  hp: 550
-  resistance: 50
+  price: 400
+  hp: 450
+  resistance: 75
   beauty: 10
   resources: []

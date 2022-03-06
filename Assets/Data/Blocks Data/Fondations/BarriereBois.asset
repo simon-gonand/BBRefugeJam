@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blockName: Wood Fence
   thumbnail: {fileID: 21300000, guid: 6247ba234f4d6604aa84aa7a18cc3c71, type: 3}
-  price: 250
-  hp: 300
-  resistance: 30
-  beauty: 5
+  price: 400
+  hp: 450
+  resistance: 75
+  beauty: 10
   resources: []

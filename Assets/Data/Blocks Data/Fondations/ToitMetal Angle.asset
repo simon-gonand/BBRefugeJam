@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blockName: Metal Roof Angle
   thumbnail: {fileID: 21300000, guid: 0a3952586425c6a4fb70cee1bb753534, type: 3}
-  price: 275
-  hp: 125
-  resistance: 50
-  beauty: -5
+  price: 400
+  hp: 450
+  resistance: 75
+  beauty: 10
   resources: []
