@@ -35,6 +35,9 @@ public class BaseBlock : MonoBehaviour, IDamageable
        {
             runtimeData.hp = 0;
             onDeath.Invoke();
+            Instantiate(GameManager.instance.explosion, this.transform.position, Quaternion.identity);
+            GameManager.instance.explosion.Play();
+            Destroy(gameObject);
        }
        else
        {
