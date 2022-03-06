@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
 
     public List<BaseBlock> allAvailableBlocks;
 
+    public ParticleSystem explosion;
+
     public bool isApocalypseLaunched = false;
 
     public static GameManager instance;

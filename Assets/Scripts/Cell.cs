@@ -39,9 +39,8 @@ public class Cell : MonoBehaviour
         //Put current selected bloc
         if (Input.GetMouseButtonDown(0) && bc.enabled)
         {
-
             //adjacent = Grid.Instance.GetAdjacentCells(posInGrid.x, posInGrid.y, posInGrid.z);
-            if(Player.instance.EnoughMoney(Player.instance.currentBlock.data.price))
+            if (Player.instance.EnoughMoney(Player.instance.currentBlock.data.price))
             {                
                 if (Player.instance.PlacementAllowed())
                 {
