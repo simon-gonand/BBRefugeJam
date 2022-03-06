@@ -42,6 +42,10 @@ public class InfoPanel : MonoBehaviour
         resistanceText.text = data.resistance.ToString();
         beautyText.text = data.beauty.ToString();
 
+        waterText.text = "0";
+        foodText.text = "0";
+        energyText.text = "0";
+        weaponryText.text = "0";
 
         foreach (Resource r in data.resources)
         {
