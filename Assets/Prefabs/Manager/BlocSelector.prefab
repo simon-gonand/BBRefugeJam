@@ -44,3 +44,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBloc: {fileID: 8645405307240694392, guid: eac0be1c57ead774ebf861f2715b466d, type: 3}
+  previewTmp: {fileID: 0}
+  previewMaterial: {fileID: 2100000, guid: f5c870fe3e9462849a6f164b5a2696f0, type: 2}
+  nbOfRotation: 0

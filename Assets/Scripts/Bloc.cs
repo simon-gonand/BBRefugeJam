@@ -9,6 +9,8 @@ public class Bloc : MonoBehaviour
     private Camera cam;
     public LayerMask layer;
 
+    public bool isPreview = false;
+
     private void Start()
     {
         cam = Camera.main;
@@ -19,11 +21,20 @@ public class Bloc : MonoBehaviour
         //Ray r = cam.ScreenPointToRay(Input.mousePosition);
         //Ray r = cam.ViewportPointToRay(Input.mousePosition);
         //Debug.DrawRay(r.origin, r.direction * 100, Color.red, 0.1f);
+
+        RaycastHit hit;
+
+        // Draw ray from mouse position to check if we hit anything with certain layer 
+        if (isPreview && !Physics.Raycast(cam.ScreenPointToRay(Input.mousePosition), out hit, 1000))
+        {
+            Destroy(gameObject);
+        }
     }
 
     void OnMouseOver()
     {
-        if (Input.GetMouseButtonDown(0))
+
+        if (Input.GetMouseButtonDown(0) && !isPreview)
         {
             //ray cast
             cam = Camera.main;
@@ -82,6 +93,11 @@ public class Bloc : MonoBehaviour
             }
 
         }
+        else if (Input.GetMouseButtonDown(0) && isPreview)
+        {
+            bottomCell.AddBlocOnCell();
+            Destroy(this);
+        }
 
 
         //delete bloc
@@ -98,6 +114,14 @@ public class Bloc : MonoBehaviour
             Destroy(gameObject);
         }
 
+    }
+
+    private void OnMouseExit()
+    {
+        if (isPreview)
+        {
+            Destroy(gameObject);
+        }
     }
 
     public enum MCFace
