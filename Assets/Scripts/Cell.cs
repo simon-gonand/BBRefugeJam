@@ -35,13 +35,18 @@ public class Cell : MonoBehaviour
     {
         //TODO : highlight cell
 
-        //Player.instance.currentlyHoveredCell = this;
+        Player.instance.currentlyHoveredCell = this;
 
         //Put current selected bloc
         if (Input.GetMouseButtonDown(0) && bc.enabled)
         {
+
             //adjacent = Grid.Instance.GetAdjacentCells(posInGrid.x, posInGrid.y, posInGrid.z);
-            AddBlocOnCell();
+
+            if(Player.instance.PlacementAllowed())
+            {
+                AddBlocOnCell();
+            }
 
             //Debug.Log(posInGrid);
         }

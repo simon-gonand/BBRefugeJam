@@ -73,13 +73,14 @@ public class Player : MonoBehaviour
                         }
                         break;
                     case Direction.Above:
-                        foreach (GameObject obj in above)
+                        Debug.Log("");
+                        foreach (GameObject obj in under)
                         {
                             if (obj.GetComponent<BaseBlock>().data.blockName == neighbour.data.blockName) return false;
                         }
                         break;
                     case Direction.Under:
-                        foreach (GameObject obj in under)
+                        foreach (GameObject obj in above)
                         {
                             if (obj.GetComponent<BaseBlock>().data.blockName == neighbour.data.blockName) return false;
                         }

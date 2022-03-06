@@ -116,7 +116,7 @@ public class Grid : MonoBehaviour
     public GameObject GetCell(float x, float y, float z)
     {
         //get inexistant cell
-        if (x < 0 || x >= width || z < 0 || z >= lenght || y >= heightMax) return null;
+        if (x < 0 || x >= width || z < 0 || z >= lenght || y >= heightMax || y < 0) return null;
 
         Debug.Log("X: " + x + ", Y: " + y + ", Z: " + z);
         grid[(int)x, (int)y, (int)z].SetActive(true);
