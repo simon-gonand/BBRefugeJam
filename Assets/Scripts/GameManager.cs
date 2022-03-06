@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -49,6 +50,7 @@ public class GameManager : MonoBehaviour
             Debug.Log(ScoreManager.instance.resistanceScore);
             Debug.Log(ScoreManager.instance.survivalScore);
             isApocalypseLaunched = false;
+            SceneManager.LoadScene("ScoreScene");
         }
     }
 }
