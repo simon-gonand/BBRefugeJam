@@ -8,4 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Scenes/LON_Main.unity
     guid: 53698e0d53aafea4b8c32bc916e74351
+  - enabled: 1
+    path: Assets/_Scenes/SIM_Master.unity
+    guid: 2d0392c5fe7131945a81fbb5838a6777
+  - enabled: 1
+    path: Assets/_Scenes/ScoreScene.unity
+    guid: 05d6d1e97f146804bbc032f123e4e247
   m_configObjects: {}
