@@ -7,7 +7,7 @@ public class ScoreManager : MonoBehaviour
 
     public static ScoreManager instance;
 
-    int initialHP;
+    private int initialHP;
 
     private int beautyScore = 0;
     private int resistanceScore = 0;
@@ -25,6 +25,11 @@ public class ScoreManager : MonoBehaviour
         List<BaseBlock> blocks = Grid.Instance.GetAllBlocks();
         beautyScore = GetBeautyScore(blocks);
         survivalScore = GetSurvivalScore(blocks);
+        CalculateInitialResistanceScore(blocks);
+        resistanceScore = GetResistanceScore(blocks);
+        Debug.Log(beautyScore);
+        Debug.Log(survivalScore);
+        Debug.Log(resistanceScore);
     }
 
     public void CalculateInitialResistanceScore(List<BaseBlock> blocks)
@@ -81,6 +86,35 @@ public class ScoreManager : MonoBehaviour
         return (int)(Mathf.Lerp(0, 100, Mathf.InverseLerp(0, bestResult, result)) * Player.instance.rules.beautyMultiplier);
     }
 
+    private BaseBlock GetBestResistanceObject()
+    {
+        BaseBlock bestBlock = null;
+        float bestRate = 0.0f;
+        foreach (BaseBlock block in GameManager.instance.allAvailableBlocks)
+        {
+            float rate = block.data.hp / block.data.price;
+            if (bestBlock == null)
+            {
+                bestBlock = block;
+                bestRate = rate;
+                continue;
+            }
+            if (rate > bestRate)
+            {
+                bestBlock = block;
+                bestRate = rate;
+            }
+        }
+        return bestBlock;
+    }
+
+    private int GetBestResistanceScore()
+    {
+        BaseBlock bestBlock = GetBestResistanceObject();
+        int nbInstance = Player.instance.rules.initialMoney / bestBlock.data.price;
+        return bestBlock.data.hp * nbInstance;
+    }
+
     public int GetResistanceScore(List<BaseBlock> blocks)
     {
         int result = 0;
@@ -88,9 +122,10 @@ public class ScoreManager : MonoBehaviour
         foreach (BaseBlock block in blocks)
         {
             result += block.runtimeData.hp;
-        }        
+        }
 
-        return (int)Mathf.Lerp(0, 100, Mathf.InverseLerp(0, initialHP, result));
+        Debug.Log((float)initialHP / (float)GetBestResistanceScore());
+        return (int)(Mathf.Lerp(0, 100, Mathf.InverseLerp(0, initialHP, result)) * (float)initialHP / (float)GetBestResistanceScore());
     }
 
 

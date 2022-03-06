@@ -2150,6 +2150,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 548726153}
   m_CullTransparentMesh: 1
+--- !u!1 &562004944 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3029981551378830520, guid: 2d81b66d29e1ecd4bb85127b2bc5bdbe, type: 3}
+  m_PrefabInstance: {fileID: 1106132233}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &564918701
 GameObject:
   m_ObjectHideFlags: 0
@@ -4490,6 +4495,10 @@ PrefabInstance:
       propertyPath: cellWidth
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4430985221773025224, guid: 59503b56c720e8546afc3485ad4a6491, type: 3}
+      propertyPath: selectionFrame
+      value: 
+      objectReference: {fileID: 562004944}
     - target: {fileID: 8705360595358655249, guid: 59503b56c720e8546afc3485ad4a6491, type: 3}
       propertyPath: m_Name
       value: Grid
