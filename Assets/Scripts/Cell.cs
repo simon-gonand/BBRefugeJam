@@ -42,11 +42,14 @@ public class Cell : MonoBehaviour
         {
 
             //adjacent = Grid.Instance.GetAdjacentCells(posInGrid.x, posInGrid.y, posInGrid.z);
-
-            if(Player.instance.PlacementAllowed())
-            {
-                AddBlocOnCell();
+            if(Player.instance.EnoughMoney(Player.instance.currentBlock.data.price))
+            {                
+                if (Player.instance.PlacementAllowed())
+                {
+                    AddBlocOnCell();
+                }
             }
+            else WarningMessage.instance.Warning("Not enough money !", 2f);
 
             //Debug.Log(posInGrid);
         }
