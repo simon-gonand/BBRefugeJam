@@ -194,6 +194,9 @@ public class Bloc : MonoBehaviour
     public void DestroyBloc()
     {
         //topCell.gameObject.SetActive(false);
+
+        Player.instance.AddMoney(this.GetComponent<BaseBlock>().data.price);
+
         topCell.gameObject.GetComponent<BoxCollider>().enabled = false;
         topCell.gameObject.GetComponent<MeshRenderer>().enabled = false;
         if (bottomCell.posInGrid.y == 0)

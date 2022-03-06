@@ -73,11 +73,15 @@ public class Cell : MonoBehaviour
 
     public void AddBlocOnCell()
     {
+
         Vector3 pos = transform.position;
         bloc = Instantiate<GameObject>(BlocSelector.Instance.currentBloc, new Vector3(pos.x, pos.y + BlocSelector.Instance.currentBloc.transform.localScale.y/2, pos.z), Grid.Instance.gr.transform.rotation * Quaternion.Euler(0, 90 * BlocSelector.Instance.nbOfRotation, 0), Grid.Instance.transform);
         bloc.transform.localPosition = this.transform.localPosition + (Vector3.up * (BlocSelector.Instance.currentBloc.transform.localScale.y / 2));
         bloc.GetComponent<Bloc>().bottomCell = this;
         bloc.GetComponent<Bloc>().topCell = Grid.Instance.GetCell(posInGrid.x, posInGrid.y+1, posInGrid.z).GetComponent<Cell>();
+
+        Player.instance.RemoveMoney(bloc.GetComponent<BaseBlock>().data.price);
+
         /*if(Grid.Instance.GetCell(posInGrid.x, posInGrid.y + 1, posInGrid.z).GetComponent<Cell>() == null)
         {
             Debug.Log("error");

@@ -13,7 +13,6 @@ public class WarningMessage : MonoBehaviour
     private void Awake()
     {
         instance = this;
-
     }
 
     public void Warning(string text, float duration)
