@@ -25,8 +25,6 @@ public class ScoreManager : MonoBehaviour
         List<BaseBlock> blocks = Grid.Instance.GetAllBlocks();
         beautyScore = GetBeautyScore(blocks);
         survivalScore = GetSurvivalScore(blocks);
-        Debug.Log(beautyScore);
-        Debug.Log(survivalScore);
     }
 
     public void CalculateInitialResistanceScore(List<BaseBlock> blocks)
@@ -183,8 +181,6 @@ public class ScoreManager : MonoBehaviour
             }
         }
         GameRules rules = Player.instance.rules;
-        /*Debug.Log("survival max score = " + bestScore);
-        Debug.Log("survival actual score = " + (weaponryScore * rules.equipmentMultiplier) + (energyScore * rules.energyMultiplier) + (foodScore * rules.foodMultiplier) + (waterScore * rules.waterMultiplier));*/
         return (int)Mathf.Lerp(0, 100, Mathf.InverseLerp(0, bestScore,  (weaponryScore * rules.equipmentMultiplier) + (energyScore * rules.energyMultiplier) + (foodScore * rules.foodMultiplier) + (waterScore * rules.waterMultiplier)));
     }
 }
