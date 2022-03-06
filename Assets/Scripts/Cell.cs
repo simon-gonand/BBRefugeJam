@@ -58,7 +58,8 @@ public class Cell : MonoBehaviour
             BlocSelector.Instance.previewTmp = Instantiate<GameObject>(BlocSelector.Instance.currentBloc, new Vector3(pos.x, pos.y + BlocSelector.Instance.currentBloc.transform.localScale.y / 2, pos.z), Grid.Instance.gr.transform.rotation * Quaternion.Euler(0, 90 * BlocSelector.Instance.nbOfRotation, 0), Grid.Instance.transform);
             BlocSelector.Instance.previewTmp.GetComponent<Bloc>().isPreview = true;
             BlocSelector.Instance.previewTmp.GetComponent<Bloc>().bottomCell = this;
-            BlocSelector.Instance.previewTmp.GetComponent<MeshRenderer>().material = BlocSelector.Instance.previewMaterial;
+            BlocSelector.Instance.previewTmp.GetComponent<Bloc>().bc.enabled = false;
+            BlocSelector.Instance.previewTmp.GetComponentInChildren<MeshRenderer>().material = BlocSelector.Instance.previewMaterial;
             BlocSelector.Instance.previewTmp.transform.localPosition = this.transform.localPosition + (Vector3.up * (BlocSelector.Instance.currentBloc.transform.localScale.y / 2));
         }
 

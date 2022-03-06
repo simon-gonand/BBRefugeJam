@@ -11,6 +11,15 @@ public class Bloc : MonoBehaviour
 
     public bool isPreview = false;
 
+    [HideInInspector]
+    public BoxCollider bc;
+
+    private void Awake()
+    {
+        bc = GetComponent<BoxCollider>();
+        
+    }
+
     private void Start()
     {
         cam = Camera.main;

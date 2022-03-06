@@ -136,9 +136,9 @@ public class Grid : MonoBehaviour
         for (int i = 1; i <= depth; i++)
         {
             if(x > 0) result.Add(GetCell(x - i, y, z).GetComponent<Cell>()?.bloc);
-            if(x < width) result.Add(GetCell(x + i, y, z).GetComponent<Cell>()?.bloc);
+            if(x < width-1) result.Add(GetCell(x + i, y, z).GetComponent<Cell>()?.bloc);
             if(z > 0) result.Add(GetCell(x, y, z - i).GetComponent<Cell>()?.bloc);
-            if(z < lenght) result.Add(GetCell(x, y, z + i).GetComponent<Cell>()?.bloc);
+            if(z < lenght-1) result.Add(GetCell(x, y, z + i).GetComponent<Cell>()?.bloc);
         }
 
         for (int i = 0; i < result.Count; i++)
