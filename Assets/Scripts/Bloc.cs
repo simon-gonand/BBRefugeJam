@@ -17,96 +17,20 @@ public class Bloc : MonoBehaviour
     private void Update()
     {
         //Ray r = cam.ScreenPointToRay(Input.mousePosition);
+        //Ray r = cam.ViewportPointToRay(Input.mousePosition);
         //Debug.DrawRay(r.origin, r.direction * 100, Color.red, 0.1f);
     }
 
     void OnMouseOver()
     {
-        //TODO : highlight cell
-
-        //add bloc on side
-        /*
         if (Input.GetMouseButtonDown(0))
         {
             //ray cast
+            cam = Camera.main;
             RaycastHit hit;
 
             // Draw ray from mouse position to check if we hit anything with certain layer 
-            if (Physics.Raycast(cam.ScreenPointToRay(Input.mousePosition), out hit, Mathf.Infinity, layer))
-            {
-
-                Debug.Log(GetHitFace(hit));
-                switch (GetHitFace(hit))
-                {
-                    case MCFace.West:
-                        GameObject pointedCell1 = Grid.Instance.GetCell((uint)bottomCell.posInGrid.x-1, (uint)bottomCell.posInGrid.z, (uint)bottomCell.posInGrid.y);
-                        if (pointedCell1 != null && pointedCell1.GetComponent<Cell>().bloc == null)
-                        {
-                            pointedCell1.GetComponent<Cell>().AddBlocOnCell();
-                        }
-                        else
-                        {
-                            GameObject newCell1 = Grid.Instance.NewCell(bottomCell.gameObject, Grid.MCFace.West);
-                            if(newCell1 != null) newCell1.GetComponent<Cell>().AddBlocOnCell();
-                        }
-                        break;
-                    case MCFace.East:
-                        GameObject pointedCell2 = Grid.Instance.GetCell((uint)bottomCell.posInGrid.x + 1, (uint)bottomCell.posInGrid.z, (uint)bottomCell.posInGrid.y);
-                        if (pointedCell2 != null && pointedCell2.GetComponent<Cell>().bloc == null)
-                        {
-                            pointedCell2.GetComponent<Cell>().AddBlocOnCell();
-                        }
-                        else
-                        {
-                            GameObject newCell2 = Grid.Instance.NewCell(bottomCell.gameObject, Grid.MCFace.East);
-                            if (newCell2 != null) newCell2.GetComponent<Cell>().AddBlocOnCell();
-                        }
-                        
-                        break;
-                    case MCFace.South:
-                        GameObject pointedCell3 = Grid.Instance.GetCell((uint)bottomCell.posInGrid.x, (uint)bottomCell.posInGrid.z+1, (uint)bottomCell.posInGrid.y);
-                        if (pointedCell3 != null && pointedCell3.GetComponent<Cell>().bloc == null)
-                        {
-                            pointedCell3.GetComponent<Cell>().AddBlocOnCell();
-                        }
-                        else
-                        {
-                            GameObject newCell3 = Grid.Instance.NewCell(bottomCell.gameObject, Grid.MCFace.South);
-                            if (newCell3 != null) newCell3.GetComponent<Cell>().AddBlocOnCell();
-                        }
-                        break;
-                    case MCFace.North:
-                        GameObject pointedCell4 = Grid.Instance.GetCell((uint)bottomCell.posInGrid.x, (uint)bottomCell.posInGrid.z - 1, (uint)bottomCell.posInGrid.y);
-                        if (pointedCell4 != null && pointedCell4.GetComponent<Cell>().bloc == null)
-                        {
-                            pointedCell4.GetComponent<Cell>().AddBlocOnCell();
-                        }
-                        else
-                        {
-                            GameObject newCell4 = Grid.Instance.NewCell(bottomCell.gameObject, Grid.MCFace.North);
-                            if (newCell4 != null) newCell4.GetComponent<Cell>().AddBlocOnCell();
-                        }
-                        break;
-                    default:
-                        //nothing happens
-                        break;
-                }
-
-            }
-            else
-            {
-                Debug.Log("not on block");
-            }
-
-        }
-        */
-        if (Input.GetMouseButtonDown(0))
-        {
-            //ray cast
-            RaycastHit hit;
-
-            // Draw ray from mouse position to check if we hit anything with certain layer 
-            if (Physics.Raycast(cam.ScreenPointToRay(Input.mousePosition), out hit, Mathf.Infinity, layer))
+            if (Physics.Raycast(cam.ScreenPointToRay(Input.mousePosition), out hit, 1000))
             {
                 if (bottomCell == null) Debug.Log("ERROR : bottomCell is null");
 
@@ -164,7 +88,7 @@ public class Bloc : MonoBehaviour
         if (Input.GetMouseButtonDown(1))
         {
             topCell.gameObject.SetActive(false);
-            if(bottomCell.posInGrid.y == 0)
+            if (bottomCell.posInGrid.y == 0)
             {
                 bottomCell.mc.enabled = true;
                 bottomCell.bc.enabled = true;
@@ -189,26 +113,40 @@ public class Bloc : MonoBehaviour
 
     public MCFace GetHitFace(RaycastHit hit)
     {
-        Vector3 incomingVec = hit.normal - Vector3.up;
+        Vector3 incomingVec = hit.normal;
 
-        if (incomingVec == new Vector3(0, -1, -1))
+        //Debug.Log(incomingVec);
+        Vector3 relative;
+        relative = transform.InverseTransformDirection(incomingVec);
+        Debug.Log(relative);
+
+        relative = new Vector3(Mathf.Round(relative.x), Mathf.Round(relative.y), Mathf.Round(relative.z));
+
+        if (relative == new Vector3(0, 0, -1))
             return MCFace.South;
 
-        if (incomingVec == new Vector3(0, -1, 1))
+        if (relative == new Vector3(0, 0, 1))
             return MCFace.North;
 
-        if (incomingVec == new Vector3(0, 0, 0))
+        if (relative == new Vector3(0, 1, 0))
             return MCFace.Up;
 
-        if (incomingVec == new Vector3(1, 1, 1))
+        if (relative == new Vector3(1, -1, 1))
             return MCFace.Down;
 
-        if (incomingVec == new Vector3(-1, -1, 0))
+        if (relative == new Vector3(-1, 0, 0))
             return MCFace.West;
 
-        if (incomingVec == new Vector3(1, -1, 0))
+        if (relative == new Vector3(1, -0, 0))
             return MCFace.East;
+        //Debug.Log(relative);
 
         return MCFace.None;
     }
+
+    public Vector3 RotatePointAroundPivot(Vector3 point, Vector3 pivot, Vector3 angles)
+    {
+        return Quaternion.Euler(angles) * (point - pivot) + pivot;
+    }
+
 }
