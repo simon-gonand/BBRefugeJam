@@ -17,5 +17,5 @@ MonoBehaviour:
   price: 300
   hp: 400
   resistance: 50
-  beauty: 0
+  beauty: -20
   resources: []

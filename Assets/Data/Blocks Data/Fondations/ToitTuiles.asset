@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cb0b50447f9889d46944d6a69edd418e, type: 3}
-  m_Name: FenetreBriques
+  m_Name: ToitTuiles
   m_EditorClassIdentifier: 
-  blockName: Fenetre de Briques
+  blockName: Toit de Tuiles
   thumbnail: {fileID: 21300000, guid: 3201536609082b34ab056a84c411fc03, type: 3}
   price: 500
-  hp: 500
-  resistance: 125
-  beauty: 5
+  hp: 650
+  resistance: 50
+  beauty: 20
   resources: []

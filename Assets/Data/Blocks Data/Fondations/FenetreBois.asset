@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blockName: "Fen\xEAtre de bois"
   thumbnail: {fileID: 21300000, guid: 3201536609082b34ab056a84c411fc03, type: 3}
-  price: 350
+  price: 300
   hp: 350
-  resistance: 30
+  resistance: 25
   beauty: 20
   resources: []
