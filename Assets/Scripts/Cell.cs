@@ -50,13 +50,24 @@ public class Cell : MonoBehaviour
 
             //Debug.Log(posInGrid);
         }
+        else if (bc.enabled)
+        {
+            if (BlocSelector.Instance.previewTmp != null) Destroy(BlocSelector.Instance.previewTmp);
+
+            Vector3 pos = transform.position;
+            BlocSelector.Instance.previewTmp = Instantiate<GameObject>(BlocSelector.Instance.currentBloc, new Vector3(pos.x, pos.y + BlocSelector.Instance.currentBloc.transform.localScale.y / 2, pos.z), Grid.Instance.gr.transform.rotation * Quaternion.Euler(0, 90 * BlocSelector.Instance.nbOfRotation, 0), Grid.Instance.transform);
+            BlocSelector.Instance.previewTmp.GetComponent<Bloc>().isPreview = true;
+            BlocSelector.Instance.previewTmp.GetComponent<Bloc>().bottomCell = this;
+            BlocSelector.Instance.previewTmp.GetComponent<MeshRenderer>().material = BlocSelector.Instance.previewMaterial;
+            BlocSelector.Instance.previewTmp.transform.localPosition = this.transform.localPosition + (Vector3.up * (BlocSelector.Instance.currentBloc.transform.localScale.y / 2));
+        }
 
     }
 
     public void AddBlocOnCell()
     {
         Vector3 pos = transform.position;
-        bloc = Instantiate<GameObject>(BlocSelector.Instance.currentBloc, new Vector3(pos.x, pos.y + BlocSelector.Instance.currentBloc.transform.localScale.y/2, pos.z), Grid.Instance.gr.transform.rotation, Grid.Instance.transform);
+        bloc = Instantiate<GameObject>(BlocSelector.Instance.currentBloc, new Vector3(pos.x, pos.y + BlocSelector.Instance.currentBloc.transform.localScale.y/2, pos.z), Grid.Instance.gr.transform.rotation * Quaternion.Euler(0, 90 * BlocSelector.Instance.nbOfRotation, 0), Grid.Instance.transform);
         bloc.transform.localPosition = this.transform.localPosition + (Vector3.up * (BlocSelector.Instance.currentBloc.transform.localScale.y / 2));
         bloc.GetComponent<Bloc>().bottomCell = this;
         if (Grid.Instance.GetCell(posInGrid.x, posInGrid.y + 1, posInGrid.z).GetComponent<Cell>() != null)
