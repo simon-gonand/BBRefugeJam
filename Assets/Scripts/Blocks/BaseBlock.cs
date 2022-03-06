@@ -33,6 +33,7 @@ public class BaseBlock : MonoBehaviour, IDamageable
     {
        if(runtimeData.hp <= 0)
        {
+            runtimeData.hp = 0;
             onDeath.Invoke();
        }
        else

@@ -91,7 +91,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  damage: 5
+  damage: 150
   speed: 0.5
 --- !u!1001 &1788464062523531036
 PrefabInstance:
