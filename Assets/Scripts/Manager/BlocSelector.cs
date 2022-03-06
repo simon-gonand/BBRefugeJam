@@ -6,9 +6,14 @@ public class BlocSelector : MonoBehaviour
 {
     public static BlocSelector Instance;
 
-
     //Blocs
     public GameObject currentBloc;
+
+    //preview
+    public GameObject previewTmp;
+    public Material previewMaterial;
+    public int nbOfRotation = 0;
+
 
     public enum Blocs
     {
@@ -40,7 +45,11 @@ public class BlocSelector : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            nbOfRotation++;
+            if (nbOfRotation == 4) nbOfRotation = 0;
+        }
     }
 
     /*public void chooseCurrentBloc(Blocs b)

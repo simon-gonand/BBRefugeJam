@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 using System;
 using System.Reflection;
+
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 public class ClampedVector3Attribute : MultiPropertyAttribute
 {
@@ -16,10 +19,12 @@ public class ClampedVector3Attribute : MultiPropertyAttribute
         this.max = _max;
     }
 
+#if UNITY_EDITOR
     public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
     {
 
         Vector3 result = new Vector3(Mathf.Clamp(property.vector3Value.x, min, max), Mathf.Clamp(property.vector3Value.y, min, max), Mathf.Clamp(property.vector3Value.z, min, max));
         property.vector3Value = EditorGUI.Vector3Field(position, label, result);
     }
+#endif
 }

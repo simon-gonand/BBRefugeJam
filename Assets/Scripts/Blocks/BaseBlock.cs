@@ -12,6 +12,8 @@ public class BaseBlock : MonoBehaviour, IDamageable
     public UnityEvent onTakeDamages;
     public UnityEvent onDeath;
 
+    public Direction globalRestrictions;
+
     public List<ProximityModifier> modifiers = new List<ProximityModifier>();
 
     private void Start()
@@ -76,6 +78,7 @@ public class ProximityModifier
 {
     public BaseBlock block;
     public bool restrictPlacement;
+    public Direction restrictions;
     public ModifierData modifier;
 }
 
@@ -95,3 +98,5 @@ public class ModifierData
     [Header("Survival Score")]
     public List<Resource> resources = new List<Resource>();
 }
+
+public enum Direction {Nothing, All, Adjacents, UnderAndAbove, Under, Above,}

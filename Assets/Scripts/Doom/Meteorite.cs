@@ -5,12 +5,17 @@ using UnityEngine.Events;
 
 public class Meteorite : MonoBehaviour
 {
+    [Header("References")]
     [SerializeField]
     private Transform self;
     [SerializeField]
     private UnityEvent feedback;
+
+    [Header("Stats")]
     [SerializeField]
     private int damage;
+    [SerializeField]
+    private float speed;
 
     private bool isLaunched = false;
     private Vector3 start;
@@ -45,7 +50,7 @@ public class Meteorite : MonoBehaviour
     {
         if (isLaunched)
         {
-            t += Time.deltaTime;
+            t += Time.deltaTime * speed;
             self.localPosition = Vector3.Lerp(start, destination, t);
         }
     }

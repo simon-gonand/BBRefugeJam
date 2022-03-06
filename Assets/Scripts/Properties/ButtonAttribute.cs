@@ -1,14 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
 using System.Reflection;
 using System;
 using Object = UnityEngine.Object;
 
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 public class ButtonAttribute : MultiPropertyAttribute
 {
 
+#if UNITY_EDITOR
     public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
     {
         Object target = property.serializedObject.targetObject;
@@ -23,4 +26,5 @@ public class ButtonAttribute : MultiPropertyAttribute
 
         }
     }
+#endif
 }

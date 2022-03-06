@@ -23,5 +23,7 @@ public class BaseBlockUI : MonoBehaviour
     public void LoadInfos()
     {
         BlockSelectorMenu.instance.infoPanel.Load(baseBlock.data);
+        BlocSelector.Instance.currentBloc = block;
+        Player.instance.currentBlock = baseBlock;
     }
 }

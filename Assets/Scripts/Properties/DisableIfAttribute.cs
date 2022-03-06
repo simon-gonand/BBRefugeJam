@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 public class DisableIfAttribute : MultiPropertyAttribute
 {
     public string booleanName;
@@ -15,6 +17,7 @@ public class DisableIfAttribute : MultiPropertyAttribute
         this.booleanName = booleanName;
     }
 
+#if UNITY_EDITOR
     public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
     {
         Object target = property.serializedObject.targetObject;
@@ -29,4 +32,5 @@ public class DisableIfAttribute : MultiPropertyAttribute
 
         GUI.enabled = !result;
     }
+#endif
 }

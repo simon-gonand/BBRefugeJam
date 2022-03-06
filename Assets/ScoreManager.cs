@@ -9,11 +9,29 @@ public class ScoreManager : MonoBehaviour
 
     int initialHP;
 
+    private int beautyScore = 0;
+    private int resistanceScore = 0;
+    private int survivalScore = 0;
+
     private void Awake()
     {
         instance = this;
     }
 
+    public void CalculateScore()
+    {
+        GameObject[,,] grid = Grid.Instance.grid;
+        for (int i = 0; i < Grid.Instance.width; i++) //x
+        {
+            for (int j = 0; j < Grid.Instance.lenght; j++) //y
+            {
+                for (int z = 0; z < Grid.Instance.heightMax; z++)
+                {
+
+                }
+            }
+        }
+    }
 
     public void CalculateInitialResistanceScore(List<GameObject> blocks)
     {
@@ -83,7 +101,7 @@ public class ScoreManager : MonoBehaviour
                     case ResourceType.Energy:
                         energyScore += r.value;
                         break;
-                    case ResourceType.Weaponry:
+                    case ResourceType.Equipment:
                         weaponryScore += r.value;
                         break;
                 }

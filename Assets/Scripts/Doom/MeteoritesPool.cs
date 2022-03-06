@@ -9,14 +9,17 @@ public class MeteoritesPool : MonoBehaviour
     [SerializeField]
     private GameObject prefab;
 
+    [SerializeField]
+    private float meteoritesPercentage;
+
     private List<Meteorite> meteorites = new List<Meteorite>();
     private bool hasBeenLaunched = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        self.position *= Grid.Instance.width;
-        for (int i = 0; i < Grid.Instance.width * Grid.Instance.lenght; ++i)
+        self.position *= Grid.Instance.width / 10;
+        for (int i = 0; i < Grid.Instance.width * Grid.Instance.lenght * meteoritesPercentage; ++i)
         {
             meteorites.Add(Instantiate(prefab, self.position, Quaternion.identity, self).GetComponent<Meteorite>());
         }
