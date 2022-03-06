@@ -124,6 +124,29 @@ public class Grid : MonoBehaviour
         return grid[(int)x, (int)y, (int)z];
     }
 
+    public List<BaseBlock> GetAllBlocks()
+    {
+        List<BaseBlock> blocks = new List<BaseBlock>();
+        GameObject[,,] grid = Grid.Instance.grid;
+        for (int i = 0; i < Grid.Instance.width; i++) //x
+        {
+            for (int j = 0; j < Grid.Instance.lenght; j++) //y
+            {
+                for (int z = 0; z < Grid.Instance.heightMax; z++)
+                {
+                    if (grid[i, z, j] != null)
+                    {
+                        BaseBlock block = grid[i, z, j].GetComponent<Cell>()?.bloc?.GetComponent<BaseBlock>();
+                        if (block != null)
+                            blocks.Add(block);
+                    }
+                }
+            }
+        }
+
+        return blocks;
+    }
+
     //Ne prend que des cellules pleines /!\
     public List<GameObject> GetAdjacentCells(float x, float y, float z, int depth = 1)
     {

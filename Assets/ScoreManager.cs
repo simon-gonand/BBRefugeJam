@@ -20,55 +20,75 @@ public class ScoreManager : MonoBehaviour
 
     public void CalculateScore()
     {
-        GameObject[,,] grid = Grid.Instance.grid;
-        for (int i = 0; i < Grid.Instance.width; i++) //x
-        {
-            for (int j = 0; j < Grid.Instance.lenght; j++) //y
-            {
-                for (int z = 0; z < Grid.Instance.heightMax; z++)
-                {
-
-                }
-            }
-        }
+        beautyScore = 0;
+        survivalScore = 0;
+        List<BaseBlock> blocks = Grid.Instance.GetAllBlocks();
+        beautyScore = GetBeautyScore(blocks);
+        survivalScore = GetSurvivalScore(blocks);
+        Debug.Log(beautyScore);
+        Debug.Log(survivalScore);
     }
 
-    public void CalculateInitialResistanceScore(List<GameObject> blocks)
+    public void CalculateInitialResistanceScore(List<BaseBlock> blocks)
     {
         int result = 0;
 
-        foreach (GameObject go in blocks)
+        foreach (BaseBlock block in blocks)
         {
-            BaseBlock block = go.GetComponent<BaseBlock>();
-
             result += block.runtimeData.hp;
         }
 
         initialHP = result;
     }
 
-    public int GetBeautyScore(List<GameObject> blocks)
+    private BaseBlock GetBestBeautyObject()
     {
+        BaseBlock bestBlock = null;
+        float bestRate = 0.0f;
+        foreach(BaseBlock block in GameManager.instance.allAvailableBlocks)
+        {
+            float rate = block.data.beauty / block.data.price;
+            if (bestBlock == null)
+            {
+                bestBlock = block;
+                bestRate = rate;
+                continue;
+            }
+            if (rate > bestRate)
+            {
+                bestBlock = block;
+                bestRate = rate;
+            }
+        }
+        return bestBlock;
+    }
+
+    private int GetBestBeautyScore()
+    {
+        BaseBlock bestBlock = GetBestBeautyObject();
+        int nbInstance = Player.instance.rules.initialMoney / bestBlock.data.price;
+        return bestBlock.data.beauty * nbInstance;
+    }
+
+    public int GetBeautyScore(List<BaseBlock> blocks)
+    {
+        int bestResult = GetBestBeautyScore();
         int result = 0;
 
-        foreach (GameObject go in blocks)
+        foreach (BaseBlock block in blocks)
         {
-            BaseBlock block = go.GetComponent<BaseBlock>();
-
             result += block.runtimeData.beauty;
         }
 
-        return result;
+        return (int)(Mathf.Lerp(0, 100, Mathf.InverseLerp(0, bestResult, result)) * Player.instance.rules.beautyMultiplier);
     }
 
-    public int GetResistanceScore(List<GameObject> blocks)
+    public int GetResistanceScore(List<BaseBlock> blocks)
     {
         int result = 0;
 
-        foreach (GameObject go in blocks)
+        foreach (BaseBlock block in blocks)
         {
-            BaseBlock block = go.GetComponent<BaseBlock>();
-
             result += block.runtimeData.hp;
         }        
 
@@ -81,14 +101,69 @@ public class ScoreManager : MonoBehaviour
     int energyScore;
     int weaponryScore;
 
-    public int GetSurvivalScore(List<GameObject> blocks)
+    private BaseBlock GetBestSurvivalObject()
     {
-        foreach (GameObject go in blocks)
+        BaseBlock bestBlock = null;
+        float bestRate = 0.0f;
+        foreach (BaseBlock block in GameManager.instance.allAvailableBlocks)
         {
-            BaseBlock block = go.GetComponent<BaseBlock>();
+            int fullSurvival = 0;
+            foreach(Resource res in block.data.resources)
+            {
+                fullSurvival += res.value;
+            }
+            float rate = (float)fullSurvival / (float)block.data.price;
+            if (bestBlock == null)
+            {
+                bestBlock = block;
+                bestRate = rate;
+                continue;
+            }
+            if (rate > bestRate)
+            {
+                bestBlock = block;
+                bestRate = rate;
+            }
+        }
+        return bestBlock;
+    }
 
+    private int GetBestSurvivalScore()
+    {
+        BaseBlock bestBlock = GetBestSurvivalObject();
+        int nbInstance = Player.instance.rules.initialMoney / bestBlock.data.price;
+        int food = 0;
+        int water = 0;
+        int equipment = 0;
+        int energy = 0;
+        foreach (Resource res in bestBlock.data.resources)
+        {
+            switch (res.type)
+            {
+                case ResourceType.Water:
+                    water += res.value;
+                    break;
+                case ResourceType.Food:
+                    food += res.value;
+                    break;
+                case ResourceType.Energy:
+                    energy += res.value;
+                    break;
+                case ResourceType.Equipment:
+                    equipment += res.value;
+                    break;
+            }
+        }
+        GameRules rules = Player.instance.rules;
+        return (int)((food * rules.foodMultiplier + water * rules.waterMultiplier + energy * rules.energyMultiplier + equipment * rules.equipmentMultiplier) * nbInstance);
+    }
 
-            foreach (Resource r in block.runtimeData.resources)
+    public int GetSurvivalScore(List<BaseBlock> blocks)
+    {
+        int bestScore = GetBestSurvivalScore();
+        foreach (BaseBlock block in blocks)
+        {
+            foreach (Resource r in block.data.resources)
             {
                 switch (r.type)
                 {
@@ -107,9 +182,9 @@ public class ScoreManager : MonoBehaviour
                 }
             }
         }
-
         GameRules rules = Player.instance.rules;
-
-        return (int)Mathf.Lerp(0, 100, Mathf.InverseLerp(0, initialHP,  (weaponryScore * rules.equipmentMultiplier) + (energyScore * rules.energyMultiplier) + (foodScore * rules.foodMultiplier) + (waterScore * rules.waterMultiplier)));
+        /*Debug.Log("survival max score = " + bestScore);
+        Debug.Log("survival actual score = " + (weaponryScore * rules.equipmentMultiplier) + (energyScore * rules.energyMultiplier) + (foodScore * rules.foodMultiplier) + (waterScore * rules.waterMultiplier));*/
+        return (int)Mathf.Lerp(0, 100, Mathf.InverseLerp(0, bestScore,  (weaponryScore * rules.equipmentMultiplier) + (energyScore * rules.energyMultiplier) + (foodScore * rules.foodMultiplier) + (waterScore * rules.waterMultiplier)));
     }
 }
