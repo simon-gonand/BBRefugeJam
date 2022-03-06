@@ -48,6 +48,7 @@ public class GameManager : MonoBehaviour
             Debug.Log(ScoreManager.instance.beautyScore);
             Debug.Log(ScoreManager.instance.resistanceScore);
             Debug.Log(ScoreManager.instance.survivalScore);
+            //Display final screen
             isApocalypseLaunched = false;
         }
     }

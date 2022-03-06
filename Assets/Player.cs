@@ -218,4 +218,12 @@ public class Player : MonoBehaviour
         return true;
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            AddMoney(1000);
+        }
+    }
+
 }
