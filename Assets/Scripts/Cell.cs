@@ -29,13 +29,18 @@ public class Cell : MonoBehaviour
         return bloc;
     }
 
+    public List<GameObject> adjacent = new List<GameObject>();
+
     void OnMouseOver()
     {
         //TODO : highlight cell
 
+        //Player.instance.currentlyHoveredCell = this;
+
         //Put current selected bloc
         if (Input.GetMouseButtonDown(0) && bc.enabled)
         {
+            //adjacent = Grid.Instance.GetAdjacentCells(posInGrid.x, posInGrid.y, posInGrid.z);
             AddBlocOnCell();
 
             //Debug.Log(posInGrid);

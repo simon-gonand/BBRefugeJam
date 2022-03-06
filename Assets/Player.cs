@@ -9,6 +9,9 @@ public class Player : MonoBehaviour
 
     public GameRules rules;
 
+    public Cell currentlyHoveredCell;
+    public BaseBlock currentBlock;
+
     public static Player instance;
 
     private void Awake()
@@ -30,6 +33,19 @@ public class Player : MonoBehaviour
     public void RemoveMoney(int amount)
     {
         money -= amount;
+    }
+
+    public bool PlacementAllowed()
+    {
+        if(currentBlock.modifiers.Count > 0 && currentlyHoveredCell != null)
+        {
+            //switch();
+        }
+
+
+            foreach(GameObject go in Grid.Instance.GetAdjacentCells(currentlyHoveredCell.posInGrid.x, currentlyHoveredCell.posInGrid.y, currentlyHoveredCell.posInGrid.z))
+            ;
+        return true;
     }
 
 }
