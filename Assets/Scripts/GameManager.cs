@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     [SerializeField]
-    private MeteoritesPool meteorites;
+    private List<MeteoritesPool> meteorites;
     [SerializeField]
     private Button launchApoButton;
 
@@ -26,8 +26,27 @@ public class GameManager : MonoBehaviour
 
     public void LaunchApocalypse()
     {
+        ScoreManager.instance.CalculateScoreBeforeApo();
         isApocalypseLaunched = true;
-        meteorites.LaunchMeteorites();
+        foreach(MeteoritesPool pool in meteorites)
+            pool.LaunchMeteorites();
         launchApoButton.gameObject.SetActive(false);
+    }
+
+    private void Update()
+    {
+        if (isApocalypseLaunched)
+        {
+            foreach(MeteoritesPool pool in meteorites)
+            {
+                if (pool.hasBeenLaunched) return;
+                if (!pool.CheckAllMeteoritesDown()) return;
+            }
+            ScoreManager.instance.CalculateScoreAfterApo();
+            Debug.Log(ScoreManager.instance.beautyScore);
+            Debug.Log(ScoreManager.instance.resistanceScore);
+            Debug.Log(ScoreManager.instance.survivalScore);
+            isApocalypseLaunched = false;
+        }
     }
 }

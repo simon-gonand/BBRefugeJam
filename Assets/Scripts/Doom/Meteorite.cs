@@ -18,6 +18,8 @@ public class Meteorite : MonoBehaviour
     private float speed;
 
     private bool isLaunched = false;
+    private bool _hasExplode = false;
+    public bool hasExplode { get { return _hasExplode; } }
     private Vector3 start;
     private Vector3 destination;
     private float t = 0.0f;
@@ -25,6 +27,7 @@ public class Meteorite : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         feedback.Invoke();
+        _hasExplode = true;
         BaseBlock block = collision.collider.GetComponent<BaseBlock>();
         if (block == null) return;
         block.TakeDamages(damage);
