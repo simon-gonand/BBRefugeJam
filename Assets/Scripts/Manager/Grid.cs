@@ -20,6 +20,8 @@ public class Grid : MonoBehaviour
 
     public GroundRotation gr;
 
+    public GameObject selectionFrame;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -98,7 +100,6 @@ public class Grid : MonoBehaviour
                     if (z > 0)
                     {
                         newCell.GetComponent<Cell>().bc.enabled = false;
-                        newCell.GetComponent<Cell>().mc.enabled = false;
                         //newCell.SetActive(false);
                     }
                     grid[i , z, j] = newCell;
@@ -122,6 +123,29 @@ public class Grid : MonoBehaviour
         grid[(int)x, (int)y, (int)z].SetActive(true);
 
         return grid[(int)x, (int)y, (int)z];
+    }
+
+    public List<BaseBlock> GetAllBlocks()
+    {
+        List<BaseBlock> blocks = new List<BaseBlock>();
+        GameObject[,,] grid = Grid.Instance.grid;
+        for (int i = 0; i < Grid.Instance.width; i++) //x
+        {
+            for (int j = 0; j < Grid.Instance.lenght; j++) //y
+            {
+                for (int z = 0; z < Grid.Instance.heightMax; z++)
+                {
+                    if (grid[i, z, j] != null)
+                    {
+                        GameObject block = grid[i, z, j].GetComponent<Cell>()?.bloc;
+                        if (block != null)
+                            blocks.Add(block.GetComponent<BaseBlock>());
+                    }
+                }
+            }
+        }
+
+        return blocks;
     }
 
     //Ne prend que des cellules pleines /!\

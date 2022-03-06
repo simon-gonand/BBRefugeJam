@@ -9,7 +9,6 @@ public class Cell : MonoBehaviour
     public GameObject bloc;
 
     //component
-    public MeshRenderer mc;
     public BoxCollider bc;
 
     // Start is called before the first frame update
@@ -42,11 +41,14 @@ public class Cell : MonoBehaviour
         {
 
             //adjacent = Grid.Instance.GetAdjacentCells(posInGrid.x, posInGrid.y, posInGrid.z);
-
-            if(Player.instance.PlacementAllowed())
-            {
-                AddBlocOnCell();
+            if(Player.instance.EnoughMoney(Player.instance.currentBlock.data.price))
+            {                
+                if (Player.instance.PlacementAllowed())
+                {
+                    AddBlocOnCell();
+                }
             }
+            else WarningMessage.instance.Warning("Not enough money !", 2f);
 
             //Debug.Log(posInGrid);
         }
@@ -60,8 +62,12 @@ public class Cell : MonoBehaviour
             BlocSelector.Instance.previewTmp.GetComponent<Bloc>().bottomCell = this;
             BlocSelector.Instance.previewTmp.GetComponent<Bloc>().bc.enabled = false;
             BlocSelector.Instance.previewTmp.GetComponent<Bloc>().topCell = Grid.Instance.GetCell(posInGrid.x, posInGrid.y + 1, posInGrid.z).GetComponent<Cell>(); ;
-            //BlocSelector.Instance.previewTmp.GetComponentInChildren<MeshRenderer>().material = BlocSelector.Instance.previewMaterial;
+            BlocSelector.Instance.previewTmp.GetComponentInChildren<MeshRenderer>().material = BlocSelector.Instance.previewMaterial;
             BlocSelector.Instance.previewTmp.transform.localPosition = this.transform.localPosition + (Vector3.up * (BlocSelector.Instance.currentBloc.transform.localScale.y / 2));
+
+            Grid.Instance.selectionFrame.transform.position = pos + (Vector3.up * (Grid.Instance.cellWidth/2));
+            Grid.Instance.selectionFrame.transform.rotation = Grid.Instance.gr.transform.rotation * Quaternion.Euler(0, 90 * BlocSelector.Instance.nbOfRotation, 0);
+
         }
 
         if (Input.GetMouseButtonDown(1) && posInGrid.y > 0)
@@ -95,9 +101,7 @@ public class Cell : MonoBehaviour
         if(newBlocBottomCell.bloc == null)
         {
             Grid.Instance.GetCell(posInGrid.x, posInGrid.y + 1, posInGrid.z).GetComponent<Cell>().bc.enabled = true;
-            Grid.Instance.GetCell(posInGrid.x, posInGrid.y + 1, posInGrid.z).GetComponent<Cell>().mc.enabled = true;
         }
         bc.enabled = false;
-        mc.enabled = false;
     }
 }

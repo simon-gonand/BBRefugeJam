@@ -8,11 +8,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private MeteoritesPool meteorites;
     [SerializeField]
-    private Button leftRotationButton;
-    [SerializeField]
-    private Button rightRotationButton;
-    [SerializeField]
     private Button launchApoButton;
+
+    public List<BaseBlock> allAvailableBlocks;
 
     public bool isApocalypseLaunched = false;
 
@@ -30,8 +28,6 @@ public class GameManager : MonoBehaviour
     {
         isApocalypseLaunched = true;
         meteorites.LaunchMeteorites();
-        leftRotationButton.gameObject.SetActive(false);
-        rightRotationButton.gameObject.SetActive(false);
         launchApoButton.gameObject.SetActive(false);
     }
 }

@@ -27,6 +27,11 @@ public class Player : MonoBehaviour
         BlockSelectorMenu.instance.seedNameText.text = rules.seedName.ToString();
     }
 
+    public bool EnoughMoney(int price)
+    {
+        return money >= price ? true : false;
+    }
+
     public void AddMoney(int amount)
     {
         money += amount;
