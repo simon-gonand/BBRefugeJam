@@ -10,12 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cb0b50447f9889d46944d6a69edd418e, type: 3}
-  m_Name: BarrierePierre
+  m_Name: Bed 1
   m_EditorClassIdentifier: 
-  blockName: Stone Fence
-  thumbnail: {fileID: 21300000, guid: 817f9ed3ad089f2419c059de4c7fd104, type: 3}
-  price: 450
-  hp: 550
-  resistance: 50
-  beauty: 10
-  resources: []
+  blockName: Bed (1)
+  thumbnail: {fileID: 21300000, guid: d23e8e99f4cc0354a90348187137213f, type: 3}
+  price: 300
+  hp: 150
+  resistance: 5
+  beauty: 5
+  resources:
+  - type: 3
+    value: 15

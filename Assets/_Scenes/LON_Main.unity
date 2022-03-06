@@ -2012,7 +2012,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &514285530
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2026,7 +2026,7 @@ RectTransform:
   m_Children:
   - {fileID: 1597851340}
   m_Father: {fileID: 2050993436}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -6840,7 +6840,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2050993436}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -7554,7 +7554,7 @@ RectTransform:
   - {fileID: 1175471267}
   - {fileID: 1493658381}
   m_Father: {fileID: 2050993436}
-  m_RootOrder: 5
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -7638,7 +7638,12 @@ MonoBehaviour:
   energyText: {fileID: 375053750}
   equipmentText: {fileID: 1604730993}
   rulesList:
+  - {fileID: 11400000, guid: 40391b99a1447904bbd6b3cb3825ba58, type: 2}
+  - {fileID: 11400000, guid: e927f8cffe471c84f959ad775c19f152, type: 2}
   - {fileID: 11400000, guid: db29c6eb6cc5e594b9ea7c03fe722b44, type: 2}
+  - {fileID: 11400000, guid: 925bd82fc107d904d9e508c8a705e9f3, type: 2}
+  - {fileID: 11400000, guid: a3bbfaf61cc0fed44a6f520bd8f9da86, type: 2}
+  - {fileID: 11400000, guid: af4fbd0350797554ab3e52dd03f966da, type: 2}
 --- !u!1 &1637173188
 GameObject:
   m_ObjectHideFlags: 0
@@ -9947,9 +9952,9 @@ RectTransform:
   - {fileID: 977270038}
   - {fileID: 881660327}
   - {fileID: 330635373}
+  - {fileID: 1623114496}
   - {fileID: 514285530}
   - {fileID: 1530191648}
-  - {fileID: 1623114496}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

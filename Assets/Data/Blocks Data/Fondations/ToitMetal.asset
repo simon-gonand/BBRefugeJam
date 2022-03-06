@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: ToitMetal
   m_EditorClassIdentifier: 
   blockName: Metal Roof
-  thumbnail: {fileID: 21300000, guid: 3201536609082b34ab056a84c411fc03, type: 3}
-  price: 600
-  hp: 700
-  resistance: 75
-  beauty: 0
+  thumbnail: {fileID: 21300000, guid: 9a9c9e2edeb1f7048b0236a691f17764, type: 3}
+  price: 275
+  hp: 125
+  resistance: 50
+  beauty: -5
   resources: []
