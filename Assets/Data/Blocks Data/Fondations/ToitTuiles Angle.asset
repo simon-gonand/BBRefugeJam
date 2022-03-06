@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cb0b50447f9889d46944d6a69edd418e, type: 3}
-  m_Name: BarrierePierre
+  m_Name: ToitTuiles Angle
   m_EditorClassIdentifier: 
-  blockName: Stone Fence
-  thumbnail: {fileID: 21300000, guid: 817f9ed3ad089f2419c059de4c7fd104, type: 3}
-  price: 450
-  hp: 550
-  resistance: 50
-  beauty: 10
+  blockName: Tile Roof Angle
+  thumbnail: {fileID: 21300000, guid: 1d2d2e1ce2dc26b41ae78f77641a2aab, type: 3}
+  price: 500
+  hp: 200
+  resistance: 85
+  beauty: 20
   resources: []

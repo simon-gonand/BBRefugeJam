@@ -10,7 +10,7 @@ public class BlockData : ScriptableObject
     public string blockName;
     public Sprite thumbnail;
 
-    [ColorRange(1, 1, 1, 0.83f, 0.83f, 0.38f), Clamped(0, 1000)]
+    [ColorRange(1, 1, 1, 0.83f, 0.83f, 0.38f), Clamped(0, 5000)]
     public int price;
 
     [Header("Resistance Score")]

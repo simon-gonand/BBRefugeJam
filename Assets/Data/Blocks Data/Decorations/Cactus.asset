@@ -10,12 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cb0b50447f9889d46944d6a69edd418e, type: 3}
-  m_Name: BarrierePierre
+  m_Name: Cactus
   m_EditorClassIdentifier: 
-  blockName: Stone Fence
-  thumbnail: {fileID: 21300000, guid: 817f9ed3ad089f2419c059de4c7fd104, type: 3}
-  price: 450
-  hp: 550
-  resistance: 50
+  blockName: Cactus
+  thumbnail: {fileID: 21300000, guid: 672dba4fa97bd1b41a126268b3b86054, type: 3}
+  price: 50
+  hp: 5
+  resistance: 0
   beauty: 10
-  resources: []
+  resources:
+  - type: 0
+    value: -5
