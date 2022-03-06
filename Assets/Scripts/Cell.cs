@@ -43,10 +43,10 @@ public class Cell : MonoBehaviour
 
             //adjacent = Grid.Instance.GetAdjacentCells(posInGrid.x, posInGrid.y, posInGrid.z);
 
-            //if(Player.instance.PlacementAllowed())
-            //{
+            if(Player.instance.PlacementAllowed())
+            {
                 AddBlocOnCell();
-            //}
+            }
 
             //Debug.Log(posInGrid);
         }

@@ -108,7 +108,7 @@ public class Bloc : MonoBehaviour
         }
         else if (Input.GetMouseButtonDown(0) && isPreview)
         {
-            bottomCell.AddBlocOnCell();
+            if (Player.instance.PlacementAllowed()) bottomCell.AddBlocOnCell();
             Destroy(this);
         }
         else
