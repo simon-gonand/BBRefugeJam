@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using System;
 using System.Reflection;
 using Object = UnityEngine.Object;
 using UnityEngine;
+
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 public class ButtonHideRangeAttribute : MultiPropertyAttribute
 {
@@ -17,6 +20,7 @@ public class ButtonHideRangeAttribute : MultiPropertyAttribute
         this.to = to;
     }
 
+#if UNITY_EDITOR
     public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
     {
         Object target = property.serializedObject.targetObject;
@@ -39,4 +43,5 @@ public class ButtonHideRangeAttribute : MultiPropertyAttribute
         }
 
     }
+#endif
 }

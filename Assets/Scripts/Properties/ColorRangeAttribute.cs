@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
 using System;
 using System.Reflection;
 using Object = UnityEngine.Object;
+
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 public class ColorRangeAttribute : MultiPropertyAttribute
 {
@@ -21,6 +24,7 @@ public class ColorRangeAttribute : MultiPropertyAttribute
          this.b2 = b2;
     }
 
+#if UNITY_EDITOR
     public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
     {
 
@@ -48,4 +52,5 @@ public class ColorRangeAttribute : MultiPropertyAttribute
             GUI.color = Color.Lerp(new Color(r1, g1, b1), new Color(r2, g2, b2), Mathf.InverseLerp(ra.min, ra.max, property.intValue));
         }
     }
+#endif
 }
