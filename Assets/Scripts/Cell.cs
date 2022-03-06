@@ -103,5 +103,6 @@ public class Cell : MonoBehaviour
             Grid.Instance.GetCell(posInGrid.x, posInGrid.y + 1, posInGrid.z).GetComponent<Cell>().bc.enabled = true;
         }
         bc.enabled = false;
+        Instantiate(GameManager.instance.putBlock, pos, Quaternion.identity);
     }
 }

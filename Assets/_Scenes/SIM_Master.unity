@@ -2207,6 +2207,8 @@ MonoBehaviour:
   - {fileID: 7212543627645896447, guid: b9aa7ff236153be40bdb392de68353ef, type: 3}
   - {fileID: 7212543627645896447, guid: c09de0dfd06907845bdf1349c66895d8, type: 3}
   explosion: {fileID: 6617741840643244521, guid: 4a127bbb2369a6944a0a299e6601cae5, type: 3}
+  putBlock: {fileID: 1925446206489176267, guid: b60e00d4e097f21419afea5df64bb1b5, type: 3}
+  removeBlock: {fileID: 7530128885938107211, guid: 98357e8490252c4478ecbdd34011f2d5, type: 3}
   isApocalypseLaunched: 0
 --- !u!4 &564918703
 Transform:
