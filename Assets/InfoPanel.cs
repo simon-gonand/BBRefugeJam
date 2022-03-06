@@ -7,6 +7,7 @@ using TMPro;
 public class InfoPanel : MonoBehaviour
 {
     public TextMeshProUGUI blockNameText;
+    public Image preview;
 
     public TextMeshProUGUI priceText;
     public TextMeshProUGUI hpText;
@@ -35,6 +36,7 @@ public class InfoPanel : MonoBehaviour
     {
 
         blockNameText.text = data.blockName;
+        preview.sprite = data.thumbnail;
         priceText.text = data.price.ToString() + "$";
         hpText.text = data.hp.ToString();
         resistanceText.text = data.resistance.ToString();

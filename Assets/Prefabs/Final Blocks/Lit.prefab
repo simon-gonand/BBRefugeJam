@@ -89,14 +89,8 @@ MonoBehaviour:
   onDeath:
     m_PersistentCalls:
       m_Calls: []
-  modifiers:
-  - block: {fileID: 0}
-    restrictPlacement: 0
-    modifier:
-      hp: 0
-      resistance: 0
-      beauty: 0
-      resources: []
+  globalRestrictions: 0
+  modifiers: []
 --- !u!1001 &4323837025179104346
 PrefabInstance:
   m_ObjectHideFlags: 0

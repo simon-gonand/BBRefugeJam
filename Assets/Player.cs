@@ -35,12 +35,17 @@ public class Player : MonoBehaviour
         money -= amount;
     }
 
-    public void CheckNeighbourAvailibility()
+    public bool PlacementAllowed()
     {
-        if(currentlyHoveredCell)
+        if(currentBlock.modifiers.Count > 0 && currentlyHoveredCell != null)
         {
-
+            //switch();
         }
+
+
+            foreach(GameObject go in Grid.Instance.GetAdjacentCells(currentlyHoveredCell.posInGrid.x, currentlyHoveredCell.posInGrid.y, currentlyHoveredCell.posInGrid.z))
+            ;
+        return true;
     }
 
 }
