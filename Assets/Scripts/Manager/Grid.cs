@@ -118,7 +118,7 @@ public class Grid : MonoBehaviour
         //get inexistant cell
         if (x < 0 || x >= width || z < 0 || z >= lenght || y >= heightMax) return null;
 
-        Debug.Log("X: " + x + ", Y: " + y + ", Z: " + z);
+        //Debug.Log("X: " + x + ", Y: " + y + ", Z: " + z);
         grid[(int)x, (int)y, (int)z].SetActive(true);
 
         return grid[(int)x, (int)y, (int)z];
