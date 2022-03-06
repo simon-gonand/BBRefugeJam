@@ -6,7 +6,6 @@ public class BlocSelector : MonoBehaviour
 {
     public static BlocSelector Instance;
 
-
     //Blocs
     public GameObject currentBloc;
 

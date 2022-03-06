@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb0b50447f9889d46944d6a69edd418e, type: 3}
   m_Name: Lit
   m_EditorClassIdentifier: 
-  blockName: Lit
+  blockName: Bed
   thumbnail: {fileID: 0}
   price: 100
   hp: 50
