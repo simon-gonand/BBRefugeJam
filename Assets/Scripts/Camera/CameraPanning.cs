@@ -21,6 +21,7 @@ public class CameraPanning : MonoBehaviour
 
     private void Start()
     {
+        panClamp *= Grid.Instance.width;
         _posBeforePan = self.position;
     }
 

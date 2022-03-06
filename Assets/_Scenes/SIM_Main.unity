@@ -238,7 +238,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   self: {fileID: 19823401}
   rotation: {fileID: 938151591}
-  panClamp: {x: 5, y: 5, z: 0}
+  panClamp: {x: 1, y: 1, z: 0}
   speed: 5
 --- !u!1001 &52632702
 PrefabInstance:
@@ -295,6 +295,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5387609986051347501, guid: 2d81b66d29e1ecd4bb85127b2bc5bdbe, type: 3}
+      propertyPath: currentBloc
+      value: 
+      objectReference: {fileID: 7212543627645896434, guid: 5a2047b0278c6d84c9dcea8fca835f17, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d81b66d29e1ecd4bb85127b2bc5bdbe, type: 3}
 --- !u!1 &181432530
@@ -922,7 +926,7 @@ MonoBehaviour:
   deadZone: {x: 2, y: 2}
   upRotationClamp: -45
   downRotationClamp: 20
-  mouseSpeed: 5
+  rotateSpeed: 70
   clickRotationSpeed: 200
 --- !u!4 &1273660150 stripped
 Transform:
@@ -1083,6 +1087,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   self: {fileID: 1492602325}
   prefab: {fileID: 9188207491754144465, guid: 9bdd58a0883ff8f43b2caed17641c5af, type: 3}
+  meteoritesPercentage: 0.8
 --- !u!4 &1492602325
 Transform:
   m_ObjectHideFlags: 0
@@ -1149,6 +1154,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4430985221773025224, guid: 59503b56c720e8546afc3485ad4a6491, type: 3}
+      propertyPath: gr
+      value: 
+      objectReference: {fileID: 938151591}
+    - target: {fileID: 4430985221773025224, guid: 59503b56c720e8546afc3485ad4a6491, type: 3}
       propertyPath: width
       value: 10
       objectReference: {fileID: 0}
@@ -1158,7 +1167,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4430985221773025224, guid: 59503b56c720e8546afc3485ad4a6491, type: 3}
       propertyPath: cellWidth
-      value: 10
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8705360595358655249, guid: 59503b56c720e8546afc3485ad4a6491, type: 3}
       propertyPath: m_Name
