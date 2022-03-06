@@ -112,17 +112,29 @@ public class Bloc : MonoBehaviour
         //delete bloc
         if (Input.GetMouseButtonDown(1))
         {
-            topCell.gameObject.SetActive(false);
-            if (bottomCell.posInGrid.y == 0)
-            {
-                bottomCell.mc.enabled = true;
-                bottomCell.bc.enabled = true;
-            }
-            //Grid.Instance.DeleteCell(topCell);
-            //if (bottomCell.bloc != null) bottomCell.mc.enabled = true;
-            Destroy(gameObject);
+            DestroyBloc();
         }
 
+    }
+
+    public void DestroyBloc()
+    {
+        //topCell.gameObject.SetActive(false);
+        topCell.gameObject.GetComponent<BoxCollider>().enabled = false;
+        topCell.gameObject.GetComponent<MeshRenderer>().enabled = false;
+        if (bottomCell.posInGrid.y == 0)
+        {
+            bottomCell.mc.enabled = true;
+            bottomCell.bc.enabled = true;
+        }
+        if(bottomCell.posInGrid.y - 1 >=0 && Grid.Instance.GetCell(bottomCell.posInGrid.x, bottomCell.posInGrid.y - 1, bottomCell.posInGrid.z).GetComponent<Cell>().GetBloc() != null)
+        {
+            Grid.Instance.GetCell(bottomCell.posInGrid.x, bottomCell.posInGrid.y - 1, bottomCell.posInGrid.z).GetComponent<Cell>().GetBloc().GetComponent<Bloc>().topCell.mc.enabled = true;
+            Grid.Instance.GetCell(bottomCell.posInGrid.x, bottomCell.posInGrid.y - 1, bottomCell.posInGrid.z).GetComponent<Cell>().GetBloc().GetComponent<Bloc>().topCell.bc.enabled = true;
+        }
+        //Grid.Instance.DeleteCell(topCell);
+        //if (bottomCell.bloc != null) bottomCell.mc.enabled = true;
+        DestroyImmediate(this.gameObject);
     }
 
     private void OnMouseExit()
