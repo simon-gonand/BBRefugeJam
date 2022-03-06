@@ -11,6 +11,7 @@ Shader "Jam/Toon"
         [Header(Specular)][Space(10)]
         _SpecIntensity("Specular Intensity", Range(0.0,1.0)) = 0.
         _SpecSize("Specular Size", Range(0.0,1.0)) = 0.9
+        _SpecSmooth("Specular Smooth", Float) = 0.
 
         [Header(Specular)][Space(10)]
         [HDR] _FresnelCol("Fresnel Color", Color) = (1,1,1,0)
@@ -57,7 +58,7 @@ Shader "Jam/Toon"
 
             sampler2D _MainTex;
             float4 _MainTex_ST, _Color, _ColorR, _FresnelCol;
-            float _SpecIntensity, _SpecSize, _FresnelMin, _FresnelMax, _OnlyVCol;
+            float _SpecIntensity, _SpecSize, _SpecSmooth, _FresnelMin, _FresnelMax, _OnlyVCol;
 
             v2f vert(appdata v)
             {
@@ -86,7 +87,7 @@ Shader "Jam/Toon"
                 NdotL = step(0.0, NdotL);
 
                 float3 r = reflect(-_WorldSpaceLightPos0, normal);
-                float spec = step(_SpecSize, dot(r, i.viewDir));
+                float spec = smoothstep(_SpecSize, _SpecSize + _SpecSmooth, dot(r, i.viewDir));
 
                 float shadow = step(0.5, SHADOW_ATTENUATION(i));
                 shadow *= NdotL;
