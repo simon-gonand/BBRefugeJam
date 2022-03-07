@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cb0b50447f9889d46944d6a69edd418e, type: 3}
-  m_Name: MurBois
+  m_Name: Flowers
   m_EditorClassIdentifier: 
-  blockName: Wood Wall
-  thumbnail: {fileID: 21300000, guid: 33349e0d382295d47a022ab5260063eb, type: 3}
-  price: 400
-  hp: 450
-  resistance: 75
+  blockName: Flowers
+  thumbnail: {fileID: 21300000, guid: 05af1f3ff39328f439e5cabe35aa0007, type: 3}
+  price: 20
+  hp: 1
+  resistance: 0
   beauty: 10
   resources: []

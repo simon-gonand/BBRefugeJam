@@ -78,7 +78,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88c09495b909ca14f9b919d234020807, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 11400000, guid: 429d3000de197ab41a17974d211bb60b, type: 2}
+  data: {fileID: 11400000, guid: ede515803fe66f54f910323c0500c133, type: 2}
   runtimeData:
     price: 0
     hp: 0

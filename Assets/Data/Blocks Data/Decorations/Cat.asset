@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Cat
   m_EditorClassIdentifier: 
   blockName: Cat
-  thumbnail: {fileID: 0}
+  thumbnail: {fileID: 21300000, guid: 473920bb41f03604cac307fe9be3a031, type: 3}
   price: 350
   hp: 300
   resistance: 0
